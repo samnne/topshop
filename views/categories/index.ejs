@@ -1,0 +1,58 @@
+<% layout("layout/boilerplate") %>
+<ul class="list-group unify-bg" id="list-group">
+  <% for(let i = 0; i < collections.length; i++){ %>
+  <a
+    data-bs-toggle="collapse"
+    href="#collapseExample<%= i %>"
+    role="button"
+    aria-expanded="false"
+    aria-controls="collapseExample<%= i %>"
+    class="text-decoration-none"
+    ><ul
+      class=" list-group-item-action  <%= collections[i].products.length === 0 ? "d-none" : "d-flex" %>  flex-wrap p-2"
+    >
+      <h1 class="display-4"><%= collections[i].name.toUpperCase()  %> <%= collections[i].products.length %></h1>
+    </ul>
+  </a>
+  <% for(let product of products){ %>
+  <% if (product.category ===
+      collections[i].name){ %> 
+  <div class="collapse w-75 align-self-center" id="collapseExample<%= i %>">
+    <div class="card card-body">
+      
+       
+        
+        
+        <li class="list-group-item list-group-item-action d-flex flex-wrap p-0">
+          <div class="col-12 p-2 ps-4">
+            <a class="name-link" href="/products/<%= product.id %>">
+              <b>
+                <%= product.name %>:
+              </b>
+            </a>
+            <span>~$<%= round(product.price * product.qty, 2) %>, <%= product.category.toUpperCase() %> </span>
+            <span class="<%= product.buy === " on" ? "fw-bold" : "fw-normal" %> ">
+              <%= product.qty %> : <%= product.buy==="on" ? "Buy" : "Dont Buy" %>
+            </span>
+          </div>
+          <div class=" col-12 d-flex  align-content-center  pe-3 py-2">
+            <div class="input-group  justify-content-end">
+              <a href="/products/new/<%= product.id %>/edit" class=" btn btn-info fs-6  input-group-text">Edit</a>
+              <form action="/products/<%= product._id %>?_method=DELETE"
+                class=" p-0  btn btn-danger  fs-6 input-group-text" method="post">
+                <button class="btn btn-danger  ">
+                  Delete
+                </button>
+              </form>
+            </div>
+
+          </div>
+        </li>
+       
+      
+    </div>
+  </div>
+  <% } %>
+  <% } %>
+  <% } %>
+</ul>

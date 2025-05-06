@@ -1,0 +1,57 @@
+<% layout("layout/boilerplate") %>
+    <div
+      class="container d-flex justify-content-center flex-column vh-100 align-items-center"
+    >
+      <div class="card px-3  bg-gradient pt-2 pb-4">
+        <div
+          class="card-body main-text row text-center justify-content-between align-items-center"
+        >
+          <h5
+            class="card-title col-12  p-2  "
+          >
+            <%= product.name %>
+          </h5>
+          <h6
+            class="card-subtitle col-5   fw-normal fs-6 w-25 py-1 "
+          >
+            $<%= product.price === 0 ? "Average Price is loading" : product.price  %>
+          </h6>
+        
+          <h6
+            class="card-subtitle fw-normal col-5 w-auto py-1 fs-6"
+          >
+            <a
+              href="/products?category=<%= product.category %>"
+              class="main-text show-category"
+            >
+              <%= product.category.toUpperCase() %></a
+            >
+          </h6>
+          <h6
+          class="card-subtitle py-1 w-25 text-black <%= product.buy === "on" ? "bg-success" : ""%> fw-normal col-1 fs-6 rounded-2"
+        >
+          <%= product.buy === "on" ? "Buy" : "Omit"%>
+        </h6>
+        <h6 class="card-subtitle py-2 main-text">
+          <%= product.qty %>
+        </h6>
+      </div>
+      <a
+        href="/products/new/<%= product.id %>/edit"
+        class="card-subtitle btn btn-info col-12 fs-6 p-0 "
+        >Edit Product</a
+      >
+      <form
+        action="/products/<%= product._id %>?_method=DELETE"
+        class="col-12 p-0"
+        method="post"
+      >
+        <button class="card-subtitle btn btn-danger w-100 fs-6 p-0 mt-3">
+          Delete Product
+        </button>
+      </form>
+      </div>
+      <a href="/products" class="btn btn-info mt-2 lead"
+        >All Products <i class="fa-solid fa-left-long"></i
+      ></a>
+    </div>

@@ -1,0 +1,54 @@
+<% layout("layout/boilerplate") %>
+
+<header class="text-center align-self-auto">
+  <h1 class="display-2 main-text">Add A Product</h1>
+</header>
+
+<section class="container d-flex flex-column align-content-center">
+  <form action="/products" method="post" class="row justify-content-center">
+    <div class="col-10 p-0 m-0">
+      <div class="input-group mb-2">
+        <span class="input-group-text">Name:</span>
+        <input
+          type="text"
+          name="name"
+          class="form-control"
+          placeholder="Product Name"
+        />
+      </div>
+      <div class="input-group mb-2">
+        <span class="input-group-text">Quantity:</span>
+        <input
+          type="number"
+          name="qty"
+          class="form-control"
+          placeholder="Quantity"
+          step="1"
+        />
+      </div>
+      <div class="input-group mb-2">
+        <label class="input-group-text" for="inputGroupSelect02">Options</label>
+        <select class="form-select" name="category" id="inputGroupSelect02">
+          <option>Select Category</option>
+          <% for(let category of categories) {%>
+          <option value="<%= category %>"><%= category.toUpperCase() %></option>
+          <% } %>
+        </select>
+      </div>
+      <div class="input-group mb-2">
+        <label for="active" class="input-group-text">Need to Buy</label>
+        <div
+          class="rounded-end flex-grow-1 d-flex justify-content-center align-items-center"
+        >
+          <input type="checkbox" name="buy" class="w-75 h-75" id="active" />
+        </div>
+      </div>
+    </div>
+    <div class="p-0 text-center">
+      <button class="btn btn-info">Add Product</button>
+      <a href="/products" class="btn btn-dark w-auto align-self-center">
+        <i class="fa-solid fa-left-long"></i
+      ></a>
+    </div>
+  </form>
+</section>
