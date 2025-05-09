@@ -19,80 +19,30 @@ mongoose.connect('mongodb://127.0.0.1:27017/farmStand')
 // .catch(err => console.log("OH NO ERROR", err))
 //AIzaSyCgcUGIy4USCtPWqO9T45u-DjnegIiR-IA
 const products = [
-    {
-        name: "Ruby Grapefruit",
-        price: 1.99,
-        category: "fruit",
-        buy: "on"
-    },
-    {
-        name: "Banana",
-        price: 0.99,
-        category: "fruit",
-        buy: "on"
-    },
-    {
-        name: "Strawberry",
-        price: 2.99,
-        category: "fruit",
-        buy: "on"
-    },
-    {
-        name: "Apple",
-        price: 1.49,
-        category: "fruit",
-        buy: "on"
-    },
-    {
-        name: "Carrot",
-        price: 0.89,
-        category: "vegetable",
-        buy: "on"
-    },
-    {
-        name: "Broccoli",
-        price: 1.29,
-        category: "vegetable",
-        buy: "on"
-    },
-    {
-        name: "Spinach",
-        price: 1.19,
-        category: "vegetable",
-        buy: "on"
-    },
-    {
-        name: "Potato",
-        price: 0.79,
-        category: "vegetable",
-        buy: "on"
-    },
-    {
-        name: "Milk",
-        price: 2.49,
-        category: "dairy",
-        buy: "on"
-    },
-    {
-        name: "Cheddar Cheese",
-        price: 3.99,
-        category: "dairy",
-        buy: "on"
-    },
-    {
-        name: "Yogurt",
-        price: 1.59,
-        category: "dairy",
-        buy: "on"
-    },
-    {
-        name: "Butter",
-        price: 2.99,
-        category: "dairy",
-        buy: "on"
-    }
-];
+    // Existing products (fruit, vegetable, dairy) ...
+    { name: "Ruby Grapefruit", price: "1.00-2.00", category: "fruit", buy: "on" },
+    { name: "Banana", price: "0.50-1.00", category: "fruit", buy: "on" },
+    { name: "Strawberry", price: "2.00-3.50", category: "fruit", buy: "on" },
+    { name: "Apple", price: "1.00-2.00", category: "fruit", buy: "on" },
+    { name: "Carrot", price: "0.50-1.50", category: "vegetable", buy: "on" },
+    { name: "Broccoli", price: "1.00-2.50", category: "vegetable", buy: "on" },
+    { name: "Spinach", price: "0.80-1.50", category: "vegetable", buy: "on" },
+    { name: "Potato", price: "0.60-1.20", category: "vegetable", buy: "on" },
+    { name: "Milk", price: "2.00-3.00", category: "dairy", buy: "on" },
+    { name: "Cheddar Cheese", price: "3.00-5.00", category: "dairy", buy: "on" },
+    { name: "Yogurt", price: "1.00-2.00", category: "dairy", buy: "on" },
+    { name: "Butter", price: "2.00-3.50", category: "dairy", buy: "on" },
 
+    // New categories & products below:
+
+    { name: "Chicken Breast", price: "4.00-7.00", category: "meat", buy: "on" },
+    { name: "Salmon Fillet", price: "6.00-10.00", category: "seafood", buy: "on" },
+    { name: "Toilet Paper (12-pack)", price: "5.00-8.00", category: "household", buy: "on" },
+    { name: "Chocolate Bar", price: "1.00-2.50", category: "candy", buy: "on" },
+    { name: "Potato Chips", price: "2.00-4.00", category: "snacks", buy: "on" },
+    { name: "Shampoo", price: "3.50-6.00", category: "personal care", buy: "on" },
+    { name: "Cereal", price: "3.00-5.50", category: "breakfast", buy: "on" }
+];
 
 
 // Assign random qty to each product

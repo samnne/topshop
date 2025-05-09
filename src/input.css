@@ -1,0 +1,263 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-100: #f5e9e6;
+  --color-primary-200: #ebd3cc;
+  --color-primary-300: #e1bdb3;
+  --color-primary-400: #d7a799;
+  --color-primary-500: #cd9180;
+  --color-primary-600: #c37b66;
+  --color-primary-700: #b9654d;
+  --color-primary-800: #af4f33;
+  --color-primary-900: #a5391a;
+
+  --color-secondary-100: #f5f2ed;
+  --color-secondary-200: #ebe5db;
+  --color-secondary-300: #e1d8c9;
+  --color-secondary-400: #d7cbb7;
+  --color-secondary-500: #cdbea5;
+  --color-secondary-600: #c3b193;
+  --color-secondary-700: #b9a481;
+  --color-secondary-800: #af976f;
+  --color-secondary-900: #a58a5d;
+
+  --color-accent-100: #f5f2e6;
+  --color-accent-200: #ebe5cc;
+  --color-accent-300: #e1d8b3;
+  --color-accent-400: #d7cb99;
+  --color-accent-500: #cdbe80;
+  --color-accent-600: #c3b166;
+  --color-accent-700: #b9a44d;
+  --color-accent-800: #af9733;
+  --color-accent-900: #a58a1a;
+
+  --color-textMain-100: #e6e5e5;
+  --color-textMain-200: #cccaca;
+  --color-textMain-300: #b3b0b0;
+  --color-textMain-400: #999595;
+  --color-textMain-500: #807b7b;
+  --color-textMain-600: #666060;
+  --color-textMain-700: #4d4646;
+  --color-textMain-800: #332b2b;
+  --color-textMain-900: #1a1010;
+
+  --color-background-100: #fefdfd;
+  --color-background-200: #fdfbfb;
+  --color-background-300: #fcf9f9;
+  --color-background-400: #fbf7f7;
+  --color-background-500: #faf5f5;
+  --color-background-600: #f9f3f3;
+  --color-background-700: #f8f1f1;
+  --color-background-800: #f7efef;
+  --color-background-900: #f6eded;
+}
+
+@layer base {
+  :root {
+    --color-primary: #ac7460;
+    --color-secondary: #cdbd9f;
+    --color-accent: #bdae80;
+    --color-textMain: #0a0605;
+    --color-background: #fbf8f7;
+  }
+}
+:root {
+  --color-primary-100: #f5e9e6;
+  --color-primary-200: #ebd3cc;
+  --color-primary-300: #e1bdb3;
+  --color-primary-400: #d7a799;
+  --color-primary-500: #cd9180;
+  --color-primary-600: #c37b66;
+  --color-primary-700: #b9654d;
+  --color-primary-800: #af4f33;
+  --color-primary-900: #a5391a;
+
+  --color-secondary-100: #f5f2ed;
+  --color-secondary-200: #ebe5db;
+  --color-secondary-300: #e1d8c9;
+  --color-secondary-400: #d7cbb7;
+  --color-secondary-500: #cdbea5;
+  --color-secondary-600: #c3b193;
+  --color-secondary-700: #b9a481;
+  --color-secondary-800: #af976f;
+  --color-secondary-900: #a58a5d;
+
+  --color-accent-100: #f5f2e6;
+  --color-accent-200: #ebe5cc;
+  --color-accent-300: #e1d8b3;
+  --color-accent-400: #d7cb99;
+  --color-accent-500: #cdbe80;
+  --color-accent-600: #c3b166;
+  --color-accent-700: #b9a44d;
+  --color-accent-800: #af9733;
+  --color-accent-900: #a58a1a;
+
+  --color-textMain-100: #e6e5e5;
+  --color-textMain-200: #cccaca;
+  --color-textMain-300: #b3b0b0;
+  --color-textMain-400: #999595;
+  --color-textMain-500: #807b7b;
+  --color-textMain-600: #666060;
+  --color-textMain-700: #4d4646;
+  --color-textMain-800: #332b2b;
+  --color-textMain-900: #1a1010;
+
+  --color-background-100: #fefdfd;
+  --color-background-200: #fdfbfb;
+  --color-background-300: #fcf9f9;
+  --color-background-400: #fbf7f7;
+  --color-background-500: #faf5f5;
+  --color-background-600: #f9f3f3;
+  --color-background-700: #f8f1f1;
+  --color-background-800: #f7efef;
+  --color-background-900: #f6eded;
+}
+
+/* .bg-primary {
+  background-color: var(--color-primary);
+}
+.bg-secondary {
+  background-color: var(--color-secondary);
+}
+.bg-accent {
+  background-color: var(--color-accent);
+}
+.bg-textMain {
+  background-color: var(--color-textMain);
+}
+.bg-background {
+  background-color: var(--color-background);
+}
+
+.text-primary {
+  color: var(--color-primary);
+}
+.text-secondary {
+  color: var(--color-secondary);
+}
+.text-accent {
+  color: var(--color-accent);
+}
+.text-textMain {
+  color: var(--color-textMain);
+}
+.text-background {
+  color: var(--color-background);
+} */
+
+/* Background hover effects */
+/* .hover\:bg-primary:hover {
+  background-color: var(--color-primary);
+}
+.hover\:bg-secondary:hover {
+  background-color: var(--color-secondary);
+}
+.hover\:bg-accent:hover {
+  background-color: var(--color-accent);
+}
+.hover\:bg-textMain:hover {
+  background-color: var(--color-textMain);
+}
+.hover\:bg-background:hover {
+  background-color: var(--color-background);
+} */
+
+/* Text hover effects */
+/* .hover\:text-primary:hover {
+  color: var(--color-primary);
+}
+.hover\:text-secondary:hover {
+  color: var(--color-secondary);
+}
+.hover\:text-accent:hover {
+  color: var(--color-accent);
+}
+.hover\:text-textMain:hover {
+  color: var(--color-textMain);
+}
+.hover\:text-background:hover {
+  color: var(--color-background);
+}
+
+.shadow-primary {
+  --tw-shadow-color: var(--color-primary);
+  --tw-shadow: var(--tw-shadow-colored);
+}
+.shadow-secondary {
+  --tw-shadow-color: var(--color-secondary);
+  --tw-shadow: var(--tw-shadow-colored);
+}
+.shadow-accent {
+  --tw-shadow-color: var(--color-accent);
+  --tw-shadow: var(--tw-shadow-colored);
+}
+.shadow-textMain {
+  --tw-shadow-color: var(--color-textMain);
+  --tw-shadow: var(--tw-shadow-colored);
+}
+.shadow-background {
+  --tw-shadow-color: var(--color-background);
+  --tw-shadow: var(--tw-shadow-colored);
+} */
+
+/* With opacity variations */
+/* .shadow-primary\/50 {
+  --tw-shadow-color: color-mix(in srgb, var(--color-primary) 50%, transparent);
+  --tw-shadow: var(--tw-shadow-colored);
+}
+.shadow-accent\/30 {
+  --tw-shadow-color: color-mix(in srgb, var(--color-accent) 30%, transparent);
+  --tw-shadow: var(--tw-shadow-colored);
+} */
+
+* {
+  font-family: "Inter";
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#total-cost {
+  display: inline-block;
+  transform: translateX(0);
+  text-shadow: 0px 1px 1px #332b2b;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+#total-cost.animate {
+  transform: translateX(25px) scale(1.1);
+  text-shadow: 0px 1px 4px #ac7460;
+}
+/* @keyframes jump-out {
+  0%,
+  100% {
+  }
+  50% {
+    transform: scale(5);
+  }
+} */
+
+@layer components {
+  .navbar-icon {
+    @apply relative hover:z-10 hover:rotate-x-[22deg]  shadow-md bg-primary-600 text-background-100 hover:bg-primary-300 flex flex-col justify-center p-1.5 rounded-full my-2 w-9 h-9 cursor-pointer items-center transition-all ease-in-out duration-100;
+  }
+  .icon-link {
+    @apply w-full h-full flex justify-center items-center;
+  }
+  .btn-delete {
+    @apply bg-primary-600 rounded-lg p-2 cursor-pointer hover:bg-red-800 text-white;
+  }
+  .btn-edit {
+    @apply bg-secondary-600 rounded-lg p-2 hover:bg-secondary-800;
+  }
+  .btn-success {
+    @apply bg-primary-500 rounded-lg p-2 hover:bg-primary-700 cursor-pointer;
+  }
+  .input {
+    @apply shadow-stone-500 shadow-sm appearance-none  rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none;
+  }
+  .shadow-accent {
+    box-shadow: 0 4px 6px -1px rgba(189, 174, 128, 0.2),
+      0 2px 4px -1px rgba(189, 174, 128, 0.5);
+  }
+}

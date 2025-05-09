@@ -55,6 +55,7 @@ const categories = [
 
 async function createCollection() {
     const products = await Product.find({})
+    await Collection.deleteMany({})
     for (let cat of categories) {
         const collection = new Collection({
             name: cat,
@@ -69,6 +70,10 @@ async function createCollection() {
 
 }
 
+async function findToDelete(prods, id) {
+    //await Collection.deleteMany({})
+}
+
 function wrapAsync(fn) {
     return function (req, res, next) {
         fn(req, res, next).catch(e => next(e))
@@ -77,17 +82,12 @@ function wrapAsync(fn) {
 
 // CAT ROUTES
 
-app.get("/categories", async (req, res, next) => {
-
-
-
+app.get("/categories", wrapAsync(async (req, res, next) => {
+    //await createCollection()
     const products = await Product.find({})
     const collections = await Collection.find({})
-
     res.render("categories/index", { products, collections, round: roundToDecimal })
-
-
-})
+}))
 
 
 
@@ -125,11 +125,8 @@ app.post("/products", wrapAsync(async (req, res) => {
 }))
 
 app.delete("/products", wrapAsync(async (req, res) => {
-
-
     await Product.deleteMany({})
     res.redirect(`/products`)
-
 }))
 
 
@@ -172,18 +169,25 @@ app.delete("/products/:id", wrapAsync(async (req, res) => {
 
     const deletedProduct = await Product.findByIdAndDelete(id)
 
+    await Collection.updateMany(
+        { products: deletedProduct._id },
+        {
+            $pull: { products: deletedProduct._id }, $inc: { length: -1 }
+        }
+    );
     res.redirect(`/products`)
 
 }))
 
-app.all(/(.*)/, (err, req, res, next) => {
+app.all(/(.*)/, (req, res, next) => {
+
     next(new AppError("products/notfound", 404))
 })
 
 app.use((err, req, res, next) => {
     const { status = 500 } = err
+    console.log(err)
     if (!err.message) err.message = "Invalid"
-    console.log(err.message)
     res.status(status).render("products/notfound")
 })
 

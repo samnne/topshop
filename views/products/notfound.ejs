@@ -1,20 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-  <%- include('../partials/head.ejs') %>
-  <body>
-    <%- include('../partials/navbar.ejs') %>
-    <div
-      class="container vh-100 main-text d-flex justify-content-center flex-column align-items-center"
-    >
-      <header class="text-center">
-        <h1 class="display-4">Sorry We do not have that Product</h1>
-      </header>
-      <article class="lead">
-        <p class="blurb">404 ERROR - Could not find</p>
-      </article>
-      <a href="/products" class="btn btn-info mt-2"
-        >Go Back to Product List: <i class="fa-solid fa-left-long"></i
-      ></a>
-    </div>
-  </body>
-</html>
+<% layout("layout/boilerplate") %>
+<div
+  class="flex flex-col items-center container text-secondary-500 gap-12 justify-center"
+>
+  <header class="text-center">
+    <h1 class="text-6xl max-sm:text-4xl font-semibold">
+      Sorry We do not have that Product
+    </h1>
+  </header>
+  <article class="text-2xl">
+    <p class=""><span class="text-red-400">404 ERROR </span>- Could not find</p>
+  </article>
+  <a href="/products" class="btn-edit text-black mt-2"
+    >Go Back to Product List: <i class="fa-solid fa-left-long"></i
+  ></a>
+</div>

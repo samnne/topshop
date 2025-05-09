@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <%- include('../partials/head.ejs') %>
-  <body class="vh-100 d-flex flex-column">
+  <body
+    class="min-h-screen bg-gradient-to-br from-65%% from-textMain-900 to-textMain-800 flex flex-col justify-between text-background-900 font-sans"
+  >
     <%- include('../partials/navbar.ejs') %>
 
-    <main class="container-fluid d-flex flex-column"><%- body %></main>
+    <main class="flex justify-center h-auto"><%- body %></main>
     <%- include('../partials/disclaimer.ejs') %> <%-
     include('../partials/footer.ejs') %>
   </body>
