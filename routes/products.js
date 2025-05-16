@@ -33,7 +33,7 @@ router.post("/", wrapAsync(async (req, res) => {
     await newProduct.save();
     await collection.save()
     await avgPrice(newProduct)
-    req.flash("success", "succesfully made product".toUpperCase())
+    req.flash("success", "successfully made product".toUpperCase())
     res.redirect(`/products/${newProduct._id}`)
 }))
 
@@ -49,7 +49,11 @@ router.get("/:id", wrapAsync(async (req, res, next) => {
 
     const product = await Product.findById(id)
     if (!product) {
-        throw new AppError("products/notfound", 404)
+        req.flash("error", "Cannot find that product!")
+        return res.redirect("/products")
+        //throw new AppError("products/notfound", 404)
+
+
     }
     res.render("products/show", { product })
 }))
@@ -72,7 +76,7 @@ router.put("/:id/", wrapAsync(async (req, res) => {
     }
     const product = await Product.findByIdAndUpdate(id, req.body, { runValidators: true, new: true })
     await avgPrice(product)
-    req.flash("success", "succesfully edited product".toUpperCase())
+    req.flash("success", "successfully edited product".toUpperCase())
     res.redirect(`/products/${product.id}`)
 
 }))
@@ -89,6 +93,7 @@ router.delete("/:id", wrapAsync(async (req, res) => {
             $pull: { products: deletedProduct._id }, $inc: { length: -1 }
         }
     );
+    req.flash("success", "successfully deleted product".toUpperCase())
     res.redirect(`/products`)
 
 }))

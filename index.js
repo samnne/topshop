@@ -11,6 +11,9 @@ const productRoutes = require("./routes/products.js")
 const flash = require("connect-flash")
 const session = require("express-session")
 const cookieParser = require("cookie-parser")
+const wrapAsync = require("./utils/wrapAsync.js")
+const User = require("./models/userSchema")
+
 const sessionOptions = {
     secret: "aquicksecret",
     resave: false,
@@ -43,6 +46,14 @@ app.use("/categories", categoryRoutes)
 app.use("/products", productRoutes)
 
 
+
+app.get("/account", wrapAsync(async (req, res) => {
+    res.send("THIS IS A SECRET PAGE WE WILL MAKE LATER LMAO LOOOOOSEEERRRR")
+}))
+
+app.get("/register", wrapAsync(async (req, res) => {
+    res.render("register/signup")
+}))
 app.all(/(.*)/, (req, res, next) => {
 
     next(new AppError("NotFound", 404))
