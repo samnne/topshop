@@ -113,103 +113,6 @@
   --color-background-900: #f6eded;
 }
 
-/* .bg-primary {
-  background-color: var(--color-primary);
-}
-.bg-secondary {
-  background-color: var(--color-secondary);
-}
-.bg-accent {
-  background-color: var(--color-accent);
-}
-.bg-textMain {
-  background-color: var(--color-textMain);
-}
-.bg-background {
-  background-color: var(--color-background);
-}
-
-.text-primary {
-  color: var(--color-primary);
-}
-.text-secondary {
-  color: var(--color-secondary);
-}
-.text-accent {
-  color: var(--color-accent);
-}
-.text-textMain {
-  color: var(--color-textMain);
-}
-.text-background {
-  color: var(--color-background);
-} */
-
-/* Background hover effects */
-/* .hover\:bg-primary:hover {
-  background-color: var(--color-primary);
-}
-.hover\:bg-secondary:hover {
-  background-color: var(--color-secondary);
-}
-.hover\:bg-accent:hover {
-  background-color: var(--color-accent);
-}
-.hover\:bg-textMain:hover {
-  background-color: var(--color-textMain);
-}
-.hover\:bg-background:hover {
-  background-color: var(--color-background);
-} */
-
-/* Text hover effects */
-/* .hover\:text-primary:hover {
-  color: var(--color-primary);
-}
-.hover\:text-secondary:hover {
-  color: var(--color-secondary);
-}
-.hover\:text-accent:hover {
-  color: var(--color-accent);
-}
-.hover\:text-textMain:hover {
-  color: var(--color-textMain);
-}
-.hover\:text-background:hover {
-  color: var(--color-background);
-}
-
-.shadow-primary {
-  --tw-shadow-color: var(--color-primary);
-  --tw-shadow: var(--tw-shadow-colored);
-}
-.shadow-secondary {
-  --tw-shadow-color: var(--color-secondary);
-  --tw-shadow: var(--tw-shadow-colored);
-}
-.shadow-accent {
-  --tw-shadow-color: var(--color-accent);
-  --tw-shadow: var(--tw-shadow-colored);
-}
-.shadow-textMain {
-  --tw-shadow-color: var(--color-textMain);
-  --tw-shadow: var(--tw-shadow-colored);
-}
-.shadow-background {
-  --tw-shadow-color: var(--color-background);
-  --tw-shadow: var(--tw-shadow-colored);
-} */
-
-/* With opacity variations */
-/* .shadow-primary\/50 {
-  --tw-shadow-color: color-mix(in srgb, var(--color-primary) 50%, transparent);
-  --tw-shadow: var(--tw-shadow-colored);
-}
-.shadow-accent\/30 {
-  --tw-shadow-color: color-mix(in srgb, var(--color-accent) 30%, transparent);
-  --tw-shadow: var(--tw-shadow-colored);
-} */
-
 * {
   font-family: "Inter";
 }
@@ -228,15 +131,19 @@ html {
   transform: translateX(25px) scale(1.1);
   text-shadow: 0px 1px 4px #ac7460;
 }
-/* @keyframes jump-out {
-  0%,
-  100% {
-  }
-  50% {
-    transform: scale(5);
-  }
-} */
 
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary-500); /* Tailwind's gray-500 */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: #e5e7eb; /* Tailwind's gray-200 */
+}
 @layer components {
   .navbar-icon {
     @apply relative hover:z-10 hover:rotate-x-[22deg]  shadow-md bg-primary-600 text-background-100 hover:bg-primary-300 flex flex-col justify-center p-1.5 rounded-full my-2 w-9 h-9 cursor-pointer items-center transition-all ease-in-out duration-100;
@@ -261,3 +168,4 @@ html {
       0 2px 4px -1px rgba(189, 174, 128, 0.5);
   }
 }
+@plugin 'tailwind-scrollbar';

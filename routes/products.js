@@ -5,14 +5,7 @@ const Product = require("../models/product")
 const Collection = require("../models/category")
 const { avgPrice, calcTotal, roundToDecimal } = require("../utils/avgPrice")
 const { categories, sessionOptions } = require("../utils/baseFields")
-const session = require("express-session")
-const flash = require("connect-flash")
-router.use(session(sessionOptions))
-router.use(flash())
-router.use((req, res, next) => {
-    res.locals.messages = req.flash("success")
-    next()
-})
+
 router.get("/", wrapAsync(async (req, res) => {
     const { category } = req.query
 
@@ -79,6 +72,7 @@ router.put("/:id/", wrapAsync(async (req, res) => {
     }
     const product = await Product.findByIdAndUpdate(id, req.body, { runValidators: true, new: true })
     await avgPrice(product)
+    req.flash("success", "succesfully edited product".toUpperCase())
     res.redirect(`/products/${product.id}`)
 
 }))

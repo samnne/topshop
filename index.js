@@ -8,8 +8,14 @@ const mongoose = require("mongoose");
 const methodOverride = require("method-override")
 const categoryRoutes = require("./routes/categories")
 const productRoutes = require("./routes/products.js")
-
-
+const flash = require("connect-flash")
+const session = require("express-session")
+const cookieParser = require("cookie-parser")
+const sessionOptions = {
+    secret: "aquicksecret",
+    resave: false,
+    saveUninitialized: false
+}
 
 mongoose.set('strictQuery', true);
 mongoose.connect('mongodb://127.0.0.1:27017/shoppingList')
@@ -18,18 +24,24 @@ mongoose.connect('mongodb://127.0.0.1:27017/shoppingList')
     }).catch((e) => {
         console.log("MONGO Error", e)
     });
+
+app.use(cookieParser('thisissecret'))
+app.use(session(sessionOptions))
+app.use(flash())
 app.engine("ejs", ejsMate)
 app.set("views", path.join(__dirname, "views"))
 app.set("view engine", "ejs")
 app.use(methodOverride("_method"))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, "public")))
-app.use("/categories", categoryRoutes)
-app.use("/products", productRoutes)
 app.use((req, res, next) => {
-    res.locals.messages = req.flash("success")
+    res.locals.success = req.flash("success")
+    res.locals.error = req.flash("error")
     next()
 })
+app.use("/categories", categoryRoutes)
+app.use("/products", productRoutes)
+
 
 app.all(/(.*)/, (req, res, next) => {
 

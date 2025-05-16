@@ -5,17 +5,10 @@ const Product = require("../models/product")
 const wrapAsync = require("../utils/wrapAsync")
 const { avgPrice, calcTotal, roundToDecimal } = require("../utils/avgPrice")
 const { categories } = require("../utils/baseFields")
-const cookieParser = require("cookie-parser")
-const session = require("express-session")
 
-const sessionOptions = {
-    secret: "aquicksecret",
-    resave: false,
-    saveUninitialized: false
-}
 
-router.use(cookieParser('thisissecret'))
-router.use(session(sessionOptions))
+
+
 async function createCollection() {
     const products = await Product.find({})
     await Collection.deleteMany({})
