@@ -3,12 +3,13 @@
   class="flex flex-col items-center container text-secondary-500 gap-12 justify-center"
 >
   <header class="text-center">
-    <h1 class="text-6xl max-sm:text-4xl font-semibold">
-      Sorry We do not have that Product
-    </h1>
+    <h1 class="text-6xl max-sm:text-4xl font-semibold"><%= message %></h1>
   </header>
   <article class="text-2xl">
-    <p class=""><span class="text-red-400">404 ERROR </span>- Could not find</p>
+    <p class="">
+      <span class="text-red-400"><%= numberStatus %> ERROR</span> - <%=
+      subMessage %>
+    </p>
   </article>
   <a href="/products" class="btn-edit text-black mt-2"
     >Go Back to Product List: <i class="fa-solid fa-left-long"></i

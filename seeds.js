@@ -4,7 +4,7 @@ const Product = require("./models/product")
 mongoose.set('strictQuery', true);
 
 
-mongoose.connect('mongodb://127.0.0.1:27017/farmStand')
+mongoose.connect('mongodb://127.0.0.1:27017/shoppingList')
     .then(() => {
         console.log("MONGO CONNECTION OPENED")
     }).catch((e) => {

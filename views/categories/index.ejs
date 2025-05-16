@@ -1,65 +1,74 @@
 <% layout("layout/boilerplate") %>
-<main class="flex-col px-5">
-<header class="mb-5 text-shadow-xs text-shadow-white">
-  <h1 class=" sm:text-6xl text-4xl text-center text-shadow">All Categories</h1>
-</header>
-<ul class="flex flex-col sm:w-auto lg:w-[50rem]  bg-secondary-200 "  id="list-group">
-  <% for(let i = 0; i < collections.length; i++){ %>
-  <a
-    role="button"
-    aria-expanded="false"
-    aria-controls="collapseExample<%= i %>"
-    onclick="toggleCollapse(`<%=i%>`); "
-    class="peer cursor-pointer flex-2"
-    >
-    <ul class="bg-primary-300 flex drop-shadow-textMain-500 drop-shadow-lg relative z-10 hover:rotate-x-12 active:bg-primary-500 transition-all
-    duration-300 ease-in-out text-4xl p-4 text-textMain-800 <%= collections[i].products[0] === undefined ? "hidden" : "" %>">
-      <h1 ><%= collections[i].name.toUpperCase()  %> <%= collections[i].products.length %></h1>
-      <div class=" text-end  m-0 items-center"><a href="/products?category=<%= collections[i].name%>" role="button" class="active:text-background-500"><i class="fa-solid fa-eye"></i></a></div>
-    </ul>
-  </a>
-  <div class="overflow-hidden max-h-0 transition-all peer-checked:max-h-full duration-300 ease-in-out" id="collapseExample<%= i %>">
-  <% for(let product of products){ %>
-  <% if (product.category ===
-      collections[i].name){ %> 
-      <li class="flex flex-wrap text-textMain-900   bg-secondary-200 hover:bg-textMain-400 justify-between">
-            <div class=" p-2 ps-4 w-[100%]">
-              <a class="" href="/products/<%= product.id %>">
-                <b class="hover:text-background-100">
-                  <%= product.name %>:
-                </b>
+  <main class="flex-col px-5">
+    <header class="mb-5 text-shadow-xs text-shadow-white">
+      <h1 class=" sm:text-6xl text-4xl text-center text-shadow">All Categories</h1>
+    </header>
+    <ul class="flex flex-col sm:w-auto lg:w-[50rem]  bg-secondary-200 " id="list-group">
+      <% for(let i=0; i < collections.length; i++){ %>
+        <li class="bg-primary-300 flex drop-shadow-textMain-500 drop-shadow-lg relative z-10 hover:rotate-x-12 active:bg-primary-500 transition-all
+    duration-300 ease-in-out text-4xl p-4 text-textMain-800 <%= collections[i].products[0] === undefined ? " hidden"
+            : "" %>">
+        <a role="button" aria-expanded="false" aria-controls="collapseExample<%= i %>"
+          onclick="toggleCollapse(`<%=i%>`); " class="peer cursor-pointer flex-2">
+          
+            <h1>
+              <%= collections[i].name.toUpperCase() %>
+                <%= collections[i].products.length %>
+            </h1>
+            <div class=" text-end  m-0 items-center">
+              <a href="/products?category=<%= collections[i].name%>" role="button" class="active:text-background-500">
+                <i class="fa-solid fa-eye"></i>
               </a>
-              <span>~$<%= parseFloat(product.price.slice(0, 4)) * product.qty %>-<%=parseFloat(product.price.slice(5, product.price.length)) * product.qty %>, <%= product.category.toUpperCase() %> </span>
-              <span class="<%= product.buy === "on" ? "font-bold" : "font-light" %> ">
-                <%= product.qty %> : <%= product.buy==="on" ? "Buy" : "Dont Buy" %>
-              </span>
             </div>
-            <div class="  flex p-2 justify-end w-[100%]">
-              <div class="flex gap-1">
-                <a href="/products/new/<%= product.id %>/edit" class="btn-edit">Edit</a>
-                <form action="/products/<%= product._id %>?_method=DELETE"
-                  class=" p-0 fs-6 input-group-text" method="post">
-                  <button class="btn-delete">
-                    Delete
-                  </button>
-                </form>
-              </div>
-            </div>
-          </li>
-          <% } %>
-          <% } %>
-          </div>
-  <% } %>
-</ul>
-</main>
-<script>
-function toggleCollapse(i) {
-  const content = document.getElementById(`collapseExample${i}`);
-  //content.classList.toggle("hidden")
-  if (content.style.maxHeight) {
-    content.style.maxHeight = null;
-  } else {
-    content.style.maxHeight = content.scrollHeight + "px";
-  }
-}
-</script>
+        </a>
+      </li>
+        <div class="overflow-hidden max-h-0 transition-all peer-checked:max-h-full duration-300 ease-in-out"
+          id="collapseExample<%= i %>">
+          <% for(let product of products){ %>
+            <% if (product.category===collections[i].name){ %>
+
+              <li class="flex flex-wrap text-textMain-900   bg-secondary-200 hover:bg-textMain-400 justify-between">
+                <div class=" p-2 ps-4 w-[100%]">
+                  <a class="" href="/products/<%= product.id %>">
+                    <b class="hover:text-background-100">
+                      <%= product.name %>:
+                    </b>
+                  </a>
+                  <span>
+                    <% let lowerLimit=round(parseFloat(product.price.slice(0, 4)) * product.qty) %>
+                      <% let upperLimit=round(parseFloat(product.price.slice(5, product.price.length)) * product.qty) %>
+                        ~$<%= lowerLimit %>-<%=upperLimit %>, <%= product.category.toUpperCase() %>,
+                  </span>
+                  <span class="<%= product.buy === " on" ? "font-bold" : "font-light" %> ">
+                    <%= product.qty %> : <%= product.buy==="on" ? "Buy" : "Dont Buy" %>
+                  </span>
+                </div>
+                <div class="  flex p-2 justify-end w-[100%]">
+                  <div class="flex gap-1">
+                    <a href="/products/new/<%= product.id %>/edit" class="btn-edit">Edit</a>
+                    <form action="/products/<%= product._id %>?_method=DELETE" class=" p-0 fs-6 input-group-text"
+                      method="post">
+                      <button class="btn-delete">
+                        Delete
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </li>
+              <% } %>
+              <% } %>
+        </div>
+        <% } %>
+    </ul>
+  </main>
+  <script>
+    function toggleCollapse(i) {
+      const content = document.getElementById(`collapseExample${i}`);
+      //content.classList.toggle("hidden")
+      if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+    }
+  </script>

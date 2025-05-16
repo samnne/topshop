@@ -1,8 +1,23 @@
 @import "tailwindcss";
 
-body {
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary-500); /* Tailwind's gray-500 */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: #e5e7eb; /* Tailwind's gray-200 */
+}
+
+/* body {
   background: linear-gradient(180deg, #001219, #000) fixed;
 }
+
+
 
 .list-group {
   box-shadow: 0px 0px 18px rgb(255, 255, 255, 0.5);
@@ -81,4 +96,6 @@ body {
 
 .brand:hover {
   background: #94d2bd65;
+} */
+@plugin 'tailwind-scrollbar' {
 }

@@ -39,11 +39,8 @@ const productSchema = Schema({
             "breakfast",
             "baking",
             "international"
-        ],
-        CATEGORY: {
-            type: Schema.Types.ObjectId,
-            ref: "Category"
-        }
+        ]
+
     },
     buy: {
 
