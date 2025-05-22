@@ -2,31 +2,19 @@
 
 <section class="flex flex-col items-center">
   <header class="text-primary-500 font-bold text-6xl">
-    <h1>SIGN UP!</h1>
+    <h1>LOG IN!</h1>
   </header>
   <form
-    action="/register"
+    action="/login"
     method="post"
     class="max-w-lg bg-secondary-200 justify-center flex flex-col p-5 rounded-2xl"
   >
-    <div class="input-group group relative">
-      <label for="name">Name:</label>
-      <input
-        id="name"
-        name="name"
-        class="focus:animate-pulse peer"
-        type="text"
-        required
-      />
-      <p class="mt-1 text-sm text-red-600 hidden peer-invalid:inline">
-        Please enter a name.
-      </p>
-    </div>
     <div class="input-group group">
       <label for="username">Username:</label>
       <input
-        type="text"
+        id="username"
         name="username"
+        type="text"
         class="focus:animate-pulse peer"
         required
       />
@@ -48,22 +36,9 @@
         Please enter a password.
       </p>
     </div>
-    <div class="input-group group">
-      <label for="email">Email:</label>
-      <input
-        id="email"
-        name="email"
-        type="text"
-        class="focus:animate-pulse peer"
-        required
-      />
-      <p class="mt-1 text-sm text-red-600 hidden peer-invalid:block">
-        Please enter a email.
-      </p>
-    </div>
     <div class="self-center flex gap-2">
-      <button type="submit" class="btn-success">Sign Up!</button>
-      <a role="button" href="/login" class="btn-edit">Log In!</a>
+      <button type="submit" class="btn-success">Log In!</button>
+      <a role="button" href="/register" class="btn-edit">Sign Up!</a>
     </div>
   </form>
 </section>

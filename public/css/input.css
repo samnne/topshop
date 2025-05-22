@@ -155,7 +155,7 @@ html {
     @apply bg-primary-600 rounded-lg p-2 cursor-pointer hover:bg-red-800 text-white;
   }
   .btn-edit {
-    @apply bg-secondary-600 rounded-lg p-2 hover:bg-secondary-800;
+    @apply bg-secondary-600 rounded-lg p-2 hover:bg-secondary-800 cursor-pointer;
   }
   .btn-success {
     @apply bg-primary-500 rounded-lg p-2 hover:bg-primary-700 cursor-pointer;
@@ -166,6 +166,15 @@ html {
   .shadow-accent {
     box-shadow: 0 4px 6px -1px rgba(189, 174, 128, 0.2),
       0 2px 4px -1px rgba(189, 174, 128, 0.5);
+  }
+  .input-group {
+    @apply p-5 flex justify-between max-sm:flex-col flex-wrap  text-textMain-800 items-start min-sm:items-end;
+  }
+  .input-group input {
+    @apply pt-2 px-2 border-b-2 border-black focus:outline-0  bg-white rounded-tr;
+  }
+  .input-group label {
+    @apply px-2 rounded-tl grow min-sm:border-b-2 min-sm:border-black   pt-2;
   }
 }
 @plugin 'tailwind-scrollbar';

@@ -13,11 +13,15 @@ const session = require("express-session")
 const cookieParser = require("cookie-parser")
 const wrapAsync = require("./utils/wrapAsync.js")
 const User = require("./models/userSchema")
-
+const bcrypt = require("bcrypt")
 const sessionOptions = {
     secret: "aquicksecret",
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookies: {
+        expires: Date.now() * 1000 * 30,
+        maxAge: 1000 * 30
+    }
 }
 
 mongoose.set('strictQuery', true);
@@ -42,17 +46,66 @@ app.use((req, res, next) => {
     res.locals.error = req.flash("error")
     next()
 })
+
+const requireLogin = (req, res, next) => {
+    if (!req.session.user_id) {
+        req.flash("error", "Please log in".toUpperCase())
+        return res.redirect("/login")
+    }
+    next()
+}
+
+
 app.use("/categories", categoryRoutes)
 app.use("/products", productRoutes)
 
 
 
-app.get("/account", wrapAsync(async (req, res) => {
-    res.send("THIS IS A SECRET PAGE WE WILL MAKE LATER LMAO LOOOOOSEEERRRR")
-}))
+
+
+
 
 app.get("/register", wrapAsync(async (req, res) => {
+
     res.render("register/signup")
+}))
+
+app.post("/register", wrapAsync(async (req, res) => {
+    const { name, username, password, email } = req.body
+
+    const user = new User({
+        username,
+        password,
+        email,
+        name
+    })
+    await user.save()
+    req.session.user_id = user._id
+    res.redirect("/categories")
+}))
+app.get("/login", wrapAsync(async (req, res) => {
+    res.render("register/login")
+}))
+app.post("/login", wrapAsync(async (req, res) => {
+    const { password, username } = req.body
+    const foundUser = await User.authenticateUser(username, password)
+    if (foundUser._id) {
+        req.session.user_id = foundUser._id
+        req.flash("success", "successfully logged in".toUpperCase())
+        res.redirect("/categories")
+    } else {
+        res.redirect("/login")
+    }
+
+}))
+app.post("/logout", (req, res) => {
+    req.session.user_id = null
+    res.redirect("/account")
+})
+
+app.get("/account", requireLogin, wrapAsync(async (req, res) => {
+
+    res.render("register/account")
 }))
 app.all(/(.*)/, (req, res, next) => {
 
