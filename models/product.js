@@ -50,6 +50,10 @@ const productSchema = Schema({
     qty: {
         type: Number,
         required: true
+    },
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
     }
 })
 

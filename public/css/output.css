@@ -286,6 +286,9 @@
   .mt-2 {
     margin-top: calc(var(--spacing) * 2);
   }
+  .mt-4 {
+    margin-top: calc(var(--spacing) * 4);
+  }
   .mt-auto {
     margin-top: auto;
   }
@@ -442,8 +445,8 @@
   .overflow-hidden {
     overflow: hidden;
   }
-  .overflow-y-scroll {
-    overflow-y: scroll;
+  .overflow-y-auto {
+    overflow-y: auto;
   }
   .rounded {
     border-radius: 0.25rem;

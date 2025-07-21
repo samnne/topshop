@@ -1,12 +1,14 @@
 <% layout("layout/boilerplate") %>
   <main class="flex-col px-5">
+       <!-- <%// if(currentUser && currentUser.equals(collections[0].owner.username)) {%> -->
     <header class="mb-5 text-shadow-xs text-shadow-white">
-      <h1 class=" sm:text-6xl text-4xl text-center text-shadow">All Categories</h1>
+      <h1 class=" sm:text-6xl text-4xl text-center text-shadow">Your Categories</h1>
     </header>
+ 
     <ul class="flex flex-col sm:w-auto lg:w-[50rem]  bg-secondary-200 " id="list-group">
       <% for(let i=0; i < collections.length; i++){ %>
         <li class="bg-primary-300 flex drop-shadow-textMain-500 drop-shadow-lg relative z-10 hover:rotate-x-12 active:bg-primary-500 transition-all
-    duration-300 ease-in-out text-4xl p-4 text-textMain-800 <%= collections[i].products[0] === undefined ? " hidden"
+    duration-300 ease-in-out text-4xl p-4 text-textMain-800 <%= collections[i].products[0] === undefined ? "hidden"
             : "" %>">
         <a role="button" aria-expanded="false" aria-controls="collapseExample<%= i %>"
           onclick="toggleCollapse(`<%=i%>`); " class="peer cursor-pointer flex-2">
@@ -24,7 +26,7 @@
       </li>
         <div class="overflow-hidden max-h-0 transition-all peer-checked:max-h-full duration-300 ease-in-out"
           id="collapseExample<%= i %>">
-          <% for(let product of products){ %>
+          <% for(let product of collections[i].products){ %>
             <% if (product.category===collections[i].name){ %>
 
               <li class="flex flex-wrap text-textMain-900   bg-secondary-200 hover:bg-textMain-400 justify-between">
@@ -60,4 +62,11 @@
         </div>
         <% } %>
     </ul>
+    <% //}else{ %>
+      <!-- <section class="flex flex-col justify-center items-center gap-4 h-screen   text-shadow-white">
+        <h2 class="sm:text-6xl text-4xl text-center ">Please Sign In to get started!</h2>
+        <p class="text-center">Create a new product to get started!</p>
+        <a href="/products/new" class="btn-success mt-4">Create Product</a>
+      </section> -->
+      <%// } %>
   </main>

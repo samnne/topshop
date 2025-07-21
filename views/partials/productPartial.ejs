@@ -1,0 +1,37 @@
+<ul class="bg-secondary-300 rounded-sm" id="list-group">
+    <% for(let product of products){ %>
+        <li
+            class="flex flex-wrap text-textMain-900  first:rounded-t-sm last:rounded-b-sm hover:bg-textMain-400 justify-between">
+            <div class=" p-2 ps-4 w-[100%]">
+                <a class="" href="/products/<%= product.id %>">
+                    <b class="hover:text-background-100">
+                        <%= product.name %>:
+                    </b>
+                </a>
+                <a href="/products?category=<%= product.category %>"
+                    class="hover:text-background-100 transition-all duration-200">
+                    <span>
+                        <% let lowerLimit=round(parseFloat(product.price.slice(0, 4)) * product.qty) %>
+                            <% let upperLimit=round(parseFloat(product.price.slice(5, product.price.length)) *
+                                product.qty) %>
+                                ~$<%= lowerLimit %>-<%=upperLimit %>, <%= product.category.toUpperCase() %>,
+                    </span>
+                </a>
+                <span class="<%= product.buy === " on" ? "font-bold" : "font-light" %> ">
+                    <%= product.qty %> : <%= product.buy==="on" ? "Buy" : "Dont Buy" %>
+                </span>
+            </div>
+            <div class="  flex p-2 w-[100%] justify-end">
+                <div class="flex gap-1 ">
+                    <a href="/products/new/<%= product.id %>/edit" class="btn-edit">Edit</a>
+                    <form action="/products/<%= product._id %>?_method=DELETE" class=" p-0 fs-6 input-group-text"
+                        method="post">
+                        <button class="btn-delete">
+                            Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </li>
+        <% } %>
+</ul>
