@@ -4,10 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "build": "npm run build:css",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"npm run watch:css\" \"nodemon index.js\"",
     "build:css": "postcss public/css/input.css -o public/css/output.css",
     "watch:css": "postcss public/css/input.css -o public/css/output.css --watch"
+
   },
   "keywords": [],
   "author": "",
