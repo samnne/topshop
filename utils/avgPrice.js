@@ -1,27 +1,22 @@
 const gemini = require("@google/genai")
-const Product = require("../models/product")
+const Product = require("../models/product");
+const AppError = require("./AppError");
 const ai = new gemini.GoogleGenAI({ apiKey: process.env.API_KEY });
 const question = (theName) => {
     return `Whats the best range price of the average price and keep the lower and upper limit as close as possible for ${theName} and give just the number (can be float) do NOT put curly braces in between it eg. {1.99-2.99} and for the accurancy make sure its within a +/- $2-3 differnece for both low and high end range do NOT put the dollar sign in your response from general supermarkets (Walmart, No Frills, Loblaws, etc.) (The price should be in CAD dollars) `
 }
-async function avgPrice(product) {
-    // for (let p of allProducts) {
-    //     setTimeout(async () => {
-    //         const response = await ai.models.generateContent({
-    //             model: "gemini-2.0-flash",
-    //             contents: question(p.name)
-    //         });
-    //         const newPrice = parseFloat(response.text)
-    //         const product = await Product.findByIdAndUpdate(p._id, { price: newPrice })
-    //     
-    //     }, 2000)
-    // }
-    const response = await ai.models.generateContent({
-        model: "gemini-2.0-flash",
-        contents: question(product.name)
-    });
-    const newPrice = response.text
-    const updatedProduct = await Product.findByIdAndUpdate(product._id, { price: newPrice })
+async function avgPrice(product, next) {
+    try{
+
+        const response = await ai.models.generateContent({
+            model: "gemini-2.0-flash",
+            contents: question(product.name)
+        });
+        const newPrice = response.text
+        const updatedProduct = await Product.findByIdAndUpdate(product._id, { price: newPrice })
+    } catch (err){
+        next(new AppError(err.message, err.code))
+    }
 
 }
 function roundToDecimal(number, decimals = 2) {

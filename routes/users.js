@@ -18,7 +18,8 @@ const GoogleStrategy = require("passport-google-oauth20");
 
 const {userSchema} = require("../schemas")
 const validateSchema = ((req, res, next) => {
-    const { error } = userSchema.validate(req.body)
+    const user = {user: req.body}
+    const { error } = userSchema.validate(user)
     if (error) {
         const msg = error.details.map(el => el.message).join(
             ","

@@ -1,24 +1,25 @@
 <% layout("layout/register") %>
 
 <section class="flex flex-col items-center">
-  <header class="text-primary-500 font-bold text-6xl">
+  <header class="text-primary-500 mb-2 font-bold text-6xl">
     <h1>SIGN UP!</h1>
   </header>
   <form
     action="/register"
     method="post"
-    class="max-w-lg px-2 bg-secondary-200 justify-center flex flex-col p-5 rounded-2xl"
+    class="max-w-lg px-2 bg-secondary-200 justify-center flex flex-col py-5 rounded-2xl"
   >
     <div class="input-group group relative">
       <label for="name">Name:</label>
       <input
         id="name"
         name="name"
-        class="focus:animate-pulse peer"
+        class="focus:animate-pulse peer mr-4"
         type="text"
+        placeholder="Name"
         required
       />
-      <p class="mt-1 text-sm text-red-600 hidden peer-invalid:inline">
+      <p class="valid-text">
         Please enter a name.
       </p>
     </div>
@@ -27,10 +28,11 @@
       <input
         type="text"
         name="username"
+        placeholder="Username"
         class="focus:animate-pulse peer"
         required
       />
-      <p class="mt-1 text-sm text-red-600 hidden invalid:block">
+      <p class="valid-text">
         Please enter a username.
       </p>
     </div>
@@ -42,9 +44,10 @@
         id="password"
         class="focus:animate-pulse peer"
         min="6"
+        placeholder="***************"
         required
       />
-      <p class="mt-1 text-sm text-red-600 hidden invalid:block">
+      <p class="valid-text">
         Please enter a password.
       </p>
     </div>
@@ -56,10 +59,14 @@
         type="text"
         class="focus:animate-pulse peer"
         required
+        placeholder="Email"
       />
-      <p class="mt-1 text-sm text-red-600 hidden peer-invalid:block">
+      <p class="valid-text">
         Please enter a email.
       </p>
+    </div>
+    <div class="self-center w-fit rounded-lg  mb-2 border hover:border-black hover:backdrop-opacity-25 hover:bg-primary-300 transition-all duration-150 text-textMain-900  ">
+          <a class="block p-2 google  w-full" href="/login/federated/google"><i class="fa-solid fa-right-from-bracket"></i> Sign Up with Google</a>
     </div>
     <div class="self-center flex gap-2">
       <button type="submit" class="btn-success">Sign Up!</button>

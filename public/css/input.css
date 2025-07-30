@@ -168,16 +168,19 @@ html {
       0 2px 4px -1px rgba(189, 174, 128, 0.5);
   }
   .input-group {
-    @apply p-5 flex justify-between max-sm:flex-col flex-wrap  text-textMain-800 items-start min-sm:items-end;
+    @apply px-5 flex  pb-2 flex-col justify-between  flex-wrap  text-textMain-800 items-start ;
   }
   .input-group input {
-    @apply pt-2 px-2 border-b-2 max-sm:rounded-tl  border-black focus:outline-0  bg-white rounded-tr;
+    @apply p-1 shadow-lg font-semibold outline-0 appearance-none px-2 rounded-lg bg-white rounded-tr;
   }
   .input-group label {
-    @apply px-2 rounded-tl grow min-sm:border-b-2 min-sm:border-black pt-2;
+    @apply font-light  rounded-lg grow pb-1 pt-2;
   }
   .account-pills {
     @apply bg-accent-300  px-2 py-4 rounded-2xl;
+  }
+  .valid-text{
+    @apply mt-1 text-sm font-light text-red-600 hidden peer-invalid:block;
   }
 }
 @plugin 'tailwind-scrollbar';

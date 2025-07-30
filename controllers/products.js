@@ -42,7 +42,7 @@ const renderNewProductForm = (req, res) => {
     res.render("products/new", { categories });
 };
 
-const createNewProduct = async (req, res) => {
+const createNewProduct = async (req, res, next) => {
     req.body.price = 0;
     const curUser = res.locals.currentUser;
     const newProduct = new Product(req.body);
@@ -61,11 +61,11 @@ const createNewProduct = async (req, res) => {
     }
     user.products.push(newProduct);
 
-    await user.save();
     await newProduct.save();
+    await avgPrice(newProduct, next);
+    
     await collection.save();
-    await avgPrice(newProduct);
-
+    await user.save();
     req.flash("success", "successfully made product".toUpperCase());
     res.redirect(`/products/${newProduct._id}`);
 };
@@ -105,7 +105,7 @@ const updateProduct = async (req, res) => {
         runValidators: true,
         new: true,
     });
-    await avgPrice(product);
+    
     req.flash("success", "successfully edited product".toUpperCase());
     res.redirect(`/products/${product.id}`);
 };

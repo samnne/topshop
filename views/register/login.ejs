@@ -11,15 +11,18 @@
   >
 
     <div class="input-group group">
+
       <label for="username">Username:</label>
+
       <input
         id="username"
         name="username"
         type="text"
         class="focus:animate-pulse peer"
         required
+        placeholder="Username"
       />
-      <p class="mt-1 text-sm text-red-600 hidden peer-invalid:block">
+      <p class="valid-text">
         Please enter a username.
       </p>
     </div>
@@ -31,20 +34,21 @@
         id="password"
         class="focus:animate-pulse peer"
         min="6"
+        placeholder="***************"
         required
       />
-      <p class="mt-1 text-sm pl-1 text-red-600 hidden peer-invalid:block">
+      <p class="valid-text">
         Please enter a password.
       </p>
     </div>
-     </div>
-      <div class="p-4 w-fit self-end rounded-3xl mb-2 hover:bg-primary-600 transition-all duration-150 text-textMain-900 hover:text-textMain-200 ">
-      <a class="button google" href="/login/federated/google"><i class="fa-solid fa-right-from-bracket"></i> Sign in with Google</a>
+   
+      <div class="self-center w-fit rounded-lg  mb-2 border hover:border-black hover:backdrop-opacity-25 hover:bg-primary-300 transition-all duration-150 text-textMain-900  ">
+          <a class="block p-2 google  w-full" href="/login/federated/google"><i class="fa-solid fa-right-from-bracket"></i> Sign in with Google</a>
     </div>
     <div class="self-center flex gap-2">
       <button type="submit" class="btn-success">Log In!</button>
       <a role="button" href="/register" class="btn-edit">Sign Up!</a>
-   
+   </div>
   </form>
 </section>
 

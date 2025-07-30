@@ -32,7 +32,8 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const AppError = require("./utils/AppError.js");
 
-const dbURL = process.env.LOCAL_DB_URL;
+// const dbURL = process.env.LOCAL_DB_URL;
+const dbURL = process.env.MONGO_DB_URL;
 
 mongoose.set("strictQuery", true);
 mongoose

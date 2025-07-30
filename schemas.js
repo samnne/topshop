@@ -12,7 +12,7 @@ module.exports.productSchema = Joi.object({
     product: Joi.object({
         name: Joi.string(),
         qty: Joi.number().required(),
-        buy: Joi.string().required(),
+        buy: Joi.string(),
         category: Joi.string().required(),
         owner: Joi.object().required()
 
