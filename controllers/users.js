@@ -56,7 +56,9 @@ const logoutUser = (req, res) => {
 }
 
 const renderAccount = wrapAsync(async (req, res) => {
-    res.render("register/account")
+    const curUser = res.locals.currentUser ? res.locals.currentUser : null;
+    const user = await User.findByUsername(curUser?.username)
+    res.render("register/account", {user})
 })
 
 // Routes

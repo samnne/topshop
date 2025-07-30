@@ -1,0 +1,40 @@
+<div
+  class="bg-textMain-700 rounded-xl p-5 absolute transform translate-y-80 opacity-0 z-0 transition-all shadow-lg shadow-black duration-500 max-md:w-70 max-md:h-70 min-md:w-80 min-md:h-80"
+  id="deleteModal"
+>
+  <div
+    class="bg-secondary-500 h-full w-full flex flex-col p-2 gap-2 r rounded-2xl"
+  >
+    <div
+      class="w-full h-8/12 p-4 bg-accent-100 rounded-4xl font-bold justify-between items-center text-textMain-500 flex flex-col"
+    >
+      <header class="min-sm:text-xl text-center text-red-600">
+        <h4>Are you sure you want to delete this product!</h4>
+      </header>
+      <p class="min-sm:text-sm">This action cannot be undone.</p>
+    </div>
+    <div class="w-full h-4/12 rounded-4xl grid grid-cols-2 items-end p-3">
+      <form
+        action="/products/<%= product?._id %>?_method=DELETE"
+        class=""
+        method="post"
+      >
+        <button class="btn-delete">Delete</button>
+      </form>
+
+      <div class="flex justify-end">
+        <button class="btn-edit exit-button" data-id="deleteModal" >
+          Exit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  id="overlayScreen"
+  class="w-full duration-500  transition-all h-[116dvh] opacity-0 bg-black absolute -top-52 -z-10"
+></div>
+
+<script defer src="/js/deleteModal.js">
+</script>

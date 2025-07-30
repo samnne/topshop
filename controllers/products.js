@@ -13,16 +13,17 @@ const index = async (req, res) => {
     const user = await User.findByUsername(curUser ? curUser.username : "")
       .populate("products")
       .populate("categories");
-    const ps = await Product.find({})
+
     if (category) {
    
-      const newProds = user.products.filter((prod) => prod.category === category);
- 
+      const newProds = user ? user.products.filter((prod) => prod.category === category) : [];
+        const newSum = calcTotal(newProds)
+    
       res.render("products/index", {
         user,
         products: newProds,
         category,
-        sum: "0-0",
+        sum: newSum,
         round: roundToDecimal,
       });
     } else {

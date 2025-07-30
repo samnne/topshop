@@ -7,22 +7,13 @@
     <div class="flex flex-col">
       <%- include('../partials/navbar.ejs') %>
 
-      <main class="flex justify-center items-center flex-col gap-5 h-auto">
+      <main class="flex justify-center items-center flex-col gap-5 h-auto relative">
         <%- include('../partials/success.ejs') %> <%- body %>
       </main>
     </div>
-    <%- include('../partials/disclaimer.ejs') %> <%-
-    include('../partials/footer.ejs') %>
-    <script>
-      function toggleCollapse(i) {
-        const content = document.getElementById(`collapseExample${i}`);
-        //content.classList.toggle("hidden")
-        if (content.style.maxHeight) {
-          content.style.maxHeight = null;
-        } else {
-          content.style.maxHeight = content.scrollHeight + "px";
-        }
-      }
+    <%- include('../partials/disclaimer.ejs') %> 
+    <script defer src="/js/toggleCollapse.js">
+      
     </script>
   </body>
 </html>

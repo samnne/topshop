@@ -7,7 +7,7 @@
   <form
     action="/register"
     method="post"
-    class="max-w-lg bg-secondary-200 justify-center flex flex-col p-5 rounded-2xl"
+    class="max-w-lg px-2 bg-secondary-200 justify-center flex flex-col p-5 rounded-2xl"
   >
     <div class="input-group group relative">
       <label for="name">Name:</label>
@@ -30,7 +30,7 @@
         class="focus:animate-pulse peer"
         required
       />
-      <p class="mt-1 text-sm text-red-600 hidden peer-invalid:block">
+      <p class="mt-1 text-sm text-red-600 hidden invalid:block">
         Please enter a username.
       </p>
     </div>
@@ -44,7 +44,7 @@
         min="6"
         required
       />
-      <p class="mt-1 text-sm text-red-600 hidden peer-invalid:block">
+      <p class="mt-1 text-sm text-red-600 hidden invalid:block">
         Please enter a password.
       </p>
     </div>

@@ -1,7 +1,21 @@
 <% layout("layout/register") %>
 
-<section>
-  <h1 class="text-6xl">Account Page</h1>
+<section class="flex flex-col justify-center px-2 text-primary-100   rounded-2xl bg-neutral-950 gap-4 min-h-[50vh]">
+ 
+  <header>
+    <h1 class="text-4xl font-bold">Hi! <%= user.username.toUpperCase() %></h1>
+  </header>
+  <div class="font-semibold text-lg text-end ">
+    <p>Here's a quick run down of your items!</p>
+  </div>
+  <main class="flex justify-between text-sm text-textMain-800  min-sm:text-lg items-center py-5">
+    <div class="account-pills">
+      <h3>Total Categories: <%= user.categories.length %></h3>
+    </div>
+    <div class="account-pills">
+      <h3>Total Products: <%= user.products.length %></h3>
+    </div>
+  </main>
   <form action="/logout" method="post">
     <button class="btn-delete">Logout</button>
   </form>

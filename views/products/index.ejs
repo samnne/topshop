@@ -1,14 +1,21 @@
 <% layout("layout/boilerplate.ejs") %>
-
+<% if(user){ %>
   <section class="flex-col ">
-
     <h1 class="text-5xl text-center mb-4 " style="text-shadow: 4px 2px 10px rgba(255, 255, 255, 0.596);">
       <%= category.toUpperCase() %> Products!
     </h1>
 
-    <main class="container px-5 overflow-y-auto h-screen custom-scrollbar scroll-m-5 ">
+    <main class="container px-5 overflow-y-auto h-[60dvh] custom-scrollbar scroll-m-5 ">
      
+      
+
+
+      
       <%- include('../partials/productPartial.ejs') %>
+  
+ 
+
+      
     </main>
 
     <div class="mt-auto px-5 text-2xl py-4">
@@ -18,7 +25,16 @@
       </div>
     </div>
   </section>
-
+    <% } else { %>
+           <header class="h-[80dvh] w-full min-sm:text-5xl max-sm:text-2xl flex gap-5 flex-col items-center justify-center main-text" >
+          <h1 style="text-shadow: 4px 2px 10px rgba(255, 255, 255, 0.596);">TopShop</h1>
+          <h1 class="text-center px-5" style="text-shadow: 4px 2px 10px rgba(255, 255, 255, 0.596);">Sign Up to never be surprised again!</h1>
+          <div>
+            <a role="button" href="/register"  class="btn-success min-sm:text-2xl">Sign Up</a>
+            <a role="button" href="/login" class="btn-edit min-sm:text-2xl">Log in</a>
+          </div> 
+        </header>
+              <% } %>
   <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", ()=>{
       setTimeout(() => {
@@ -31,3 +47,4 @@
 }, 200);
     })
   </script>
+

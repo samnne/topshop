@@ -1,69 +1,41 @@
-const express = require("express")
-const router = express.Router()
-const Collection = require("../models/category")
-const Product = require("../models/product")
-const wrapAsync = require("../utils/wrapAsync")
-const { avgPrice, calcTotal, roundToDecimal } = require("../utils/avgPrice")
-const { categories } = require("../utils/baseFields")
+const express = require("express");
+const router = express.Router();
+const Collection = require("../models/category");
+const Product = require("../models/product");
+const wrapAsync = require("../utils/wrapAsync");
+const { avgPrice, calcTotal, roundToDecimal } = require("../utils/avgPrice");
+const { categories } = require("../utils/baseFields");
 
+const User = require("../models/userSchema");
 
+const { index, deleteAllProductsInCategory } = require("../controllers/categories");
 
-
-
-const bcrypt = require("bcrypt")
-const User = require("../models/userSchema")
-const { isLoggedIn } = require("../middlewares")
-
-const hashPass = async (pw) => {
-    const salt = await bcrypt.genSalt(12)
-    const hash = await bcrypt.hash(pw, salt)
-
-
-}
-// const login = async (p2, hashedpw) => {
-//     const res = await bcrypt.compare(p2, hashedpw)
-//     if (res) console.log("logged in")
-//     else console.log("try again")
-// }
-// //hashPass("monkey")
-// login("monkey", "$2b$12$w1W5d6L1hfi3rjm.Yxg5ZunsipmRp4hdDMiyuwMWv2TM7k9GTjNxi")
 async function createCollection() {
-    const products = await Product.find({})
-    await Collection.deleteMany({})
- 
+  const products = await Product.find({});
+  await Collection.deleteMany({});
 
-    for (let cat of categories) {
-        const collection = new Collection({
-            name: cat,
-            owner: null
-        })
-        for (let product of products) {
-            if (product.category === cat && cat.owner._id === user._id) {
-                collection.products.push(product)
-             
-                
-            }
-        }
-        
-        collection.save()
+  for (let cat of categories) {
+    const collection = new Collection({
+      name: cat,
+      owner: null,
+    });
+    for (let product of products) {
+      if (product.category === cat && cat.owner._id === user._id) {
+        collection.products.push(product);
+      }
     }
+
+    collection.save();
+  }
 }
 
-router.use(isLoggedIn)
+router.route("/").get(
+  wrapAsync(index)
+);
 
-router.get("/", wrapAsync(async (req, res, next) => {
-    //await createCollection()
-    const curUser = res.locals.currentUser ? res.locals.currentUser : null
-    if (curUser === null) return res.redirect("/login")
-    const user = await User.findByUsername(curUser.username).populate({
-        path: "categories",
-        populate: [{ path: "products"}, {path: "owner"}]
-    });
-
-    res.render("categories/index", { user, collections: user.categories, round: roundToDecimal })
-}))
-
-
+router.route("/deleteAll/:id").delete(wrapAsync(
+  deleteAllProductsInCategory
+))
 
 // router.get("/greet", (req, res) => {
 //     const { name = "No-name" } = req.cookies
@@ -98,5 +70,4 @@ router.get("/", wrapAsync(async (req, res, next) => {
 //     res.redirect("/categories/greet")
 // })
 
-
-module.exports = router
+module.exports = router;

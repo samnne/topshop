@@ -1,7 +1,7 @@
 <% layout("layout/boilerplate") %>
 
     <div
-      class="bg-primary-600 flex flex-col self-center  p-4 text-background-100 w-[85%] md:max-w-96"
+      class="bg-primary-600 flex flex-col self-center p-4 relative z-5 text-background-100 w-[85%] md:max-w-96"
     >
     
       <div class="bg-accent-400 px-3  bg-gradient pt-2 pb-4 ">
@@ -46,19 +46,13 @@
         <a
           href="/products/new/<%= product.id %>/edit"
           class=" btn-edit"
-          >Edit </a
+          >Edit</a
         >
 
-        
-        <form
-          action="/products/<%= product._id %>?_method=DELETE"
-          class=""
-          method="post"
-        >
-          <button class="btn-delete">
-            Delete 
-          </button>
-        </form>
+        <button class="btn-delete delete-button" data-id="deleteModal">
+          Delete?
+        </button>
+
       </div>
       </div>
       <div class="flex items-center justify-end pr-3">
@@ -68,3 +62,7 @@
         ></a>
       </div>
     </div>
+ 
+
+    
+<%- include('../partials/deleteModal.ejs') %>

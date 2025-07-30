@@ -171,10 +171,13 @@ html {
     @apply p-5 flex justify-between max-sm:flex-col flex-wrap  text-textMain-800 items-start min-sm:items-end;
   }
   .input-group input {
-    @apply pt-2 px-2 border-b-2 border-black focus:outline-0  bg-white rounded-tr;
+    @apply pt-2 px-2 border-b-2 max-sm:rounded-tl  border-black focus:outline-0  bg-white rounded-tr;
   }
   .input-group label {
-    @apply px-2 rounded-tl grow min-sm:border-b-2 min-sm:border-black   pt-2;
+    @apply px-2 rounded-tl grow min-sm:border-b-2 min-sm:border-black pt-2;
+  }
+  .account-pills {
+    @apply bg-accent-300  px-2 py-4 rounded-2xl;
   }
 }
 @plugin 'tailwind-scrollbar';

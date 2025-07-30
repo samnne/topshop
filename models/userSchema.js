@@ -1,5 +1,5 @@
 const { default: mongoose, Schema } = require("mongoose");
-const bcrypt = require("bcrypt")
+
 
 const passportLocalMongoose = require("passport-local-mongoose")
 
@@ -16,7 +16,9 @@ const userSchema = new mongoose.Schema({
         type: String
     },
     email: {
-        type: String
+        type: String,
+        required: true,
+        unique: true
     },
     categories: [
         {
@@ -29,7 +31,8 @@ const userSchema = new mongoose.Schema({
             type: Schema.Types.ObjectId,
             ref: "Product"
         }
-    ]
+    ],
+    googleId: { type: String, unique: true, sparse: true }
 
 })
 // userSchema.statics.authenticateUser = async function (username, password) {

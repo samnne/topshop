@@ -1,3 +1,3 @@
 WebDev2025.code-workspace
 node_modules/
-SECRET/
+.env

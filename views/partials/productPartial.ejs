@@ -24,14 +24,22 @@
             <div class="  flex p-2 w-[100%] justify-end">
                 <div class="flex gap-1 ">
                     <a href="/products/new/<%= product.id %>/edit" class="btn-edit">Edit</a>
-                    <form action="/products/<%= product._id %>?_method=DELETE" class=" p-0 fs-6 input-group-text"
-                        method="post">
-                        <button class="btn-delete">
-                            Delete
-                        </button>
+                    <form action="/products/<%= product._id %>?_method=DELETE" id="<%= product._id %>" class=" p-0 peer-checked:block hidden fs-6 input-group-text"
+                      method="post">
+                      <button class="btn-delete">
+                        Delete
+                      </button>
                     </form>
+                    <button class="btn-delete peer original-button" id="Hey<%= product._id %>" aria-controls="<%= product._id %>" data-id="<%= product._id %>" >
+                        Delete?
+                    </button>
                 </div>
             </div>
+            
         </li>
+
         <% } %>
 </ul>
+
+    <script defer src="/js/deleteButton.js" >
+    </script>

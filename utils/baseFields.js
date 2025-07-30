@@ -1,36 +1,43 @@
-
 const sessionOptions = {
-    secret: "aquicksecret",
-    resave: false,
-    saveUninitialized: false
-}
+  name: "session",
+  secret: "thisshouldbeasecret",
+  resave: false,
+  saveUninitialized: true,
+  cookies: {
+    httpOnly: true,
+    //secure: true,
+    expires: Date.now(),
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+  },
+};
 const categories = [
-    "fruit",
-    "vegetable",
-    "dairy",
-    "protein",
-    "candy",
-    "snacks",
-    "household",
-    "bakery",
-    "beverages",
-    "frozen",
-    "meat",
-    "seafood",
-    "pantry",
-    "condiments",
-    "personal care",
-    "cleaning",
-    "baby",
-    "pet",
-    "health",
-    "canned goods",
-    "spices",
-    "grains",
-    "breakfast",
-    "baking",
-    "international"
-]
+  "fruit",
+  "vegetable",
+  "dairy",
+  "protein",
+  "candy",
+  "snacks",
+  "household",
+  "bakery",
+  "beverages",
+  "frozen",
+  "meat",
+  "seafood",
+  "pantry",
+  "condiments",
+  "personal care",
+  "cleaning",
+  "baby",
+  "pet",
+  "health",
+  "canned goods",
+  "spices",
+  "grains",
+  "breakfast",
+  "baking",
+  "international",
+];
 module.exports = {
-    categories, sessionOptions
-}
+  categories,
+  sessionOptions,
+};
