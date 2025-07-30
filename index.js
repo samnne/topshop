@@ -50,9 +50,7 @@ const store = new MongoStore({
   touchAfter: 24 * 3600,
 });
 
-store.on("error", function (e) {
-  console.log("Error", e);
-});
+
 
 app.engine("ejs", ejsMate);
 app.set("views", path.join(__dirname, "views"));
@@ -61,7 +59,7 @@ app.set("view engine", "ejs");
 
 app.use(cors(corsOptions));
 app.use(cookieParser("thisissecret"));
-app.use(session(sessionOptions));
+app.use(session({...sessionOptions, store: store}));
 app.use(flash());
 
 app.use(methodOverride("_method"));

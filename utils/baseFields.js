@@ -2,10 +2,10 @@ const sessionOptions = {
   name: "session",
   secret: "thisshouldbeasecret",
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   cookies: {
     httpOnly: true,
-    //secure: true,
+    secure: true,
     expires: Date.now(),
     maxAge: 1000 * 60 * 60 * 24 * 7,
   },
