@@ -7,7 +7,6 @@ const question = (theName) => {
 }
 async function avgPrice(product, next) {
     try{
-
         const response = await ai.models.generateContent({
             model: "gemini-2.0-flash",
             contents: question(product.name)
