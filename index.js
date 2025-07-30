@@ -148,6 +148,10 @@ app.use((err, req, res, next) => {
   }
 });
 
+app.get("/", (req, res)=>{
+  res.redirect("/categories")
+})
+
 app.all(/(.*)/, (err, req, res, next) => {
   next(new AppError("NotFound", 404));
 });
