@@ -10,17 +10,18 @@ const User = require("../models/userSchema");
 
 const { index, deleteAllProductsInCategory } = require("../controllers/categories");
 
-async function createCollection() {
-  const products = await Product.find({});
+async function createCollection(user) {
+  const products = await Product.find({}).populate("category");
+  
   await Collection.deleteMany({});
-
+ 
   for (let cat of categories) {
     const collection = new Collection({
       name: cat,
-      owner: null,
+      owner: user,
     });
     for (let product of products) {
-      if (product.category === cat && cat.owner._id === user._id) {
+      if (product.category.name === cat && cat.owner._id === user._id) {
         collection.products.push(product);
       }
     }
@@ -29,9 +30,15 @@ async function createCollection() {
   }
 }
 
+
 router.route("/").get(
   wrapAsync(index)
 );
+router.get("/admin/c2s3c02c2s5ckistflight127", (req, res)=>{
+  const curUser = res.locals.currentUser ? res.locals.currentUser : null;
+  createCollection(curUser);
+  res.redirect("/categories")
+})
 
 router.route("/deleteAll/:id").delete(wrapAsync(
   deleteAllProductsInCategory

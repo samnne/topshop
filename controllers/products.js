@@ -62,7 +62,7 @@ const createNewProduct = async (req, res, next) => {
     user.products.push(newProduct);
 
     await newProduct.save();
-    //await avgPrice(newProduct, next);
+    await avgPrice(newProduct, next);
     
     await collection.save();
     await user.save();
