@@ -1,4 +1,4 @@
-const { roundToDecimal } = require("../utils/avgPrice");
+const { roundToDecimal, scanPrice } = require("../utils/avgPrice");
 
 const User = require("../models/userSchema");
 const Collection = require("../models/category");
@@ -17,6 +17,7 @@ const index = async (req, res, next) => {
     user,
     collections: user?.categories ? user.categories : [],
     round: roundToDecimal,
+    displayPrice: scanPrice
   });
 };
 

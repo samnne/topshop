@@ -33,14 +33,39 @@ function roundToDecimal(number, decimals = 2) {
   // console.log(Math.round(number * factor) / factor)
   return Math.round(number * factor) / factor;
 }
+
+function scanPrice(price){
+
+
+    let dash = '-';
+    let found = false;
+    let lowerLimit = "";
+    let upperLimit = "";
+    for(let i = 0; i < price.length; i++){
+        if(price[i] === dash){
+            found = true;
+            continue;
+        }
+        if(found){
+            upperLimit += price[i];
+        } else {
+            lowerLimit += price[i];
+        }
+    }
+    lowerLimit = roundToDecimal(parseFloat(lowerLimit))
+    upperLimit = roundToDecimal(parseFloat(upperLimit))
+    return `${lowerLimit}-${upperLimit}`
+}
+
 function calcTotal(allProducts = []) {
   let totalSum = "";
   let lowerLimit = 0;
   let upperLimit = 0;
   allProducts.forEach((cur) => {
+    let dash = cur.price.indexOf('-')
     if (cur.buy === "on") {
-      lowerLimit += parseFloat(cur.price.slice(0, 4)) * cur.qty;
-      upperLimit += parseFloat(cur.price.slice(5, cur.price.length) * cur.qty);
+      lowerLimit += parseFloat(cur.price.slice(0, dash)) * cur.qty;
+      upperLimit += parseFloat(cur.price.slice(dash + 1, cur.price.length)) * cur.qty;
     }
     //console.log(`price: ${cur.price} lower upper: ${lowerLimit} ${upperLimit}`)
   });
@@ -50,4 +75,4 @@ function calcTotal(allProducts = []) {
   return totalSum;
 }
 
-module.exports = { avgPrice, calcTotal, roundToDecimal };
+module.exports = { avgPrice, calcTotal, roundToDecimal, scanPrice };

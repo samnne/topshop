@@ -1,7 +1,7 @@
 
 const Product = require("../models/product");
 const Collection = require("../models/category");
-const { avgPrice, calcTotal, roundToDecimal } = require("../utils/avgPrice");
+const { avgPrice, calcTotal, roundToDecimal, scanPrice } = require("../utils/avgPrice");
 const { categories } = require("../utils/baseFields");
 
 const User = require("../models/userSchema");
@@ -34,7 +34,7 @@ const index = async (req, res) => {
         products: user ? user.products : [],
         category: "All",
         sum,
-        round: roundToDecimal,
+        displayPrice: scanPrice
       });
     }
   }

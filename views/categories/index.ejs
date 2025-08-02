@@ -50,9 +50,7 @@
                     </b>
                   </a>
                   <span>
-                    <% let lowerLimit=round(parseFloat(product.price.slice(0, 4)) * product.qty) %>
-                      <% let upperLimit=round(parseFloat(product.price.slice(5, product.price.length)) * product.qty) %>
-                        ~$<%= lowerLimit %>-<%=upperLimit %>, <%= product.category.toUpperCase() %>,
+                    $<%= displayPrice(product.price) %>
                   </span>
                   <span class="<%= product.buy === " on" ? "font-bold" : "font-light" %> ">
                     <%= product.qty %> : <%= product.buy==="on" ? "Buy" : "Dont Buy" %>
