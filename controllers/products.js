@@ -43,7 +43,7 @@ const renderNewProductForm = (req, res) => {
 };
 
 const createNewProduct = async (req, res, next) => {
-    req.body.price = 0;
+    req.body.price = "0-0";
     const curUser = res.locals.currentUser;
     const newProduct = new Product(req.body);
     newProduct.owner = curUser;
@@ -62,7 +62,7 @@ const createNewProduct = async (req, res, next) => {
     user.products.push(newProduct);
 
     await newProduct.save();
-    await avgPrice(newProduct, next);
+    await avgPrice(newProduct, next, req);
     
     await collection.save();
     await user.save();

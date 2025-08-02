@@ -5,7 +5,7 @@ const Collection = require("../models/category");
 const Product = require("../models/product");
 
 const index = async (req, res, next) => {
-  //await createCollection()
+  
   const curUser = res.locals.currentUser ? res.locals.currentUser : null;
 
   const user = await User.findByUsername(curUser?.username).populate({
