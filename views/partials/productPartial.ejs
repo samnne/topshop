@@ -1,7 +1,7 @@
 <ul class="bg-secondary-300 rounded-sm" id="list-group">
     <% for(let product of products){ %>
         <li
-            class="flex flex-wrap text-textMain-900  first:rounded-t-sm last:rounded-b-sm hover:bg-textMain-400 justify-between">
+            class="flex flex-wrap text-textMain-900  first:rounded-t-sm last:rounded-b-sm hover:bg-textMain-400 justify-between" id="<%= product._id %>Root">
             <div class=" p-2 ps-4 w-[100%]">
                 <a class="" href="/products/<%= product.id %>">
                     <b class="hover:text-background-100">

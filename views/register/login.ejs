@@ -1,6 +1,6 @@
 <% layout("layout/register") %>
 
-<section class="flex flex-col items-center ">
+<section class="flex flex-col items-center">
   <header class="text-primary-500 font-bold text-6xl">
     <h1>LOG IN!</h1>
   </header>
@@ -9,9 +9,7 @@
     method="post"
     class="max-w-lg px-2 bg-secondary-200 justify-center flex flex-col p-5 rounded-2xl"
   >
-
     <div class="input-group group">
-
       <label for="username">Username:</label>
 
       <input
@@ -20,41 +18,49 @@
         type="text"
         class="focus:animate-pulse peer"
         required
+        minlength="4"
         placeholder="Username"
+        autocomplete="username"
       />
-      <p class="valid-text">
-        Please enter a username.
-      </p>
+      <p class="valid-text">Please enter a username.</p>
     </div>
     <div class="input-group group">
       <label for="password">Password:</label>
-      <input
-        type="password"
-        name="password"
-        id="password"
-        class="focus:animate-pulse peer"
-        min="6"
-        placeholder="***************"
-        required
-      />
-      <p class="valid-text">
-        Please enter a password.
-      </p>
+      <div class="relative">
+        <input
+          type="password"
+          name="password"
+          id="password"
+          class="focus:animate-pulse peer"
+          minlength="6"
+          placeholder="***************"
+          required
+          autocomplete="current-password"
+        />
+        <button type="button" id="showPassword">
+          <i class="fa-solid fa-eye absolute top-2 right-3 z-10"></i>
+        </button>
+      </div>
+      <p class="valid-text">Please enter a password.</p>
     </div>
-   
-      <div class="self-center w-fit rounded-lg  mb-2 border hover:border-black hover:backdrop-opacity-25 hover:bg-primary-300 transition-all duration-150 text-textMain-900  ">
-          <a class="block p-2 google  w-full" href="/login/federated/google"><i class="fa-solid fa-right-from-bracket"></i> Sign in with Google</a>
+
+    <div
+      class="self-center w-fit rounded-lg mb-2 border hover:border-black hover:backdrop-opacity-25 hover:bg-primary-300 transition-all duration-150 text-textMain-900"
+    >
+      <a class="block p-2 google w-full" href="/login/federated/google"
+        ><i class="fa-solid fa-right-from-bracket"></i> Sign in with Google</a
+      >
     </div>
     <div class="self-center flex gap-2">
       <button type="submit" class="btn-success">Log In!</button>
       <a role="button" href="/register" class="btn-edit">Sign Up!</a>
-   </div>
+    </div>
   </form>
 </section>
 
 <script>
   let form = document.querySelector("form");
-  let button = document.getElementById("button");
+  let button = document.querySelector("button");
 
   button.onsubmit = (e) => {
     let p = document.querySelectorAll("p");
@@ -62,4 +68,6 @@
       if (par.classList.contains("peer")) par.classList.toggle("peer");
     });
   };
+</script>
+<script src="/js/showPassword.js">
 </script>

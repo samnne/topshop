@@ -1,22 +1,70 @@
 <% layout("layout/register") %>
 
-<section class="flex flex-col justify-center px-2 text-primary-100   rounded-2xl bg-neutral-950 gap-4 min-h-[50vh]">
+<script type="text/javascript">
+  const theUser = <%- JSON.stringify(user) %>
+</script>
+
+<section class="grid min-sm:grid-cols-2 min-md:px-12 px-2 text-primary-100 w-full rounded-2xl  gap-4 min-h-[50vh]">
  
-  <header>
-    <h1 class="text-4xl font-bold">Hi! <%= user.username.toUpperCase() %></h1>
-  </header>
-  <div class="font-semibold text-lg text-end ">
-    <p>Here's a quick run down of your items!</p>
+  <div class="min-sm:w-full min-sm:border-r-2  h-full border-white">
+    <header>
+      <h1 class="text-4xl font-semibold mb-2">Your Account</h1>
+    </header>
+    <p class=" mb-5 text-xs">
+      This page will give a breif run down of your products and categories.
+    </p>
+    <p class="text-xs capitalize"> Alongside the ability to change your username, password, email, and add any information you are comfortable with!</p>
   </div>
-  <main class="flex justify-between text-sm text-textMain-800  min-sm:text-lg items-center py-5">
-    <div class="account-pills">
-      <h3>Total Categories: <%= user.categories.length %></h3>
+  <form action="/account/editUser/<%= user._id %>" method="post" class=" w-full p-2 rounded-2xl flex-col flex bg-accent-400">
+    <div class="input-group">
+      <label for="username">Username:</label>
+      <input type="text"  name="username" autocomplete="username" value="<%= user.username %>" id="username">
     </div>
-    <div class="account-pills">
-      <h3>Total Products: <%= user.products.length %></h3>
+    <!-- <div class="input-group">
+      <label for="currentPassword">Old Password:</label>
+      <input type="password" name="currentPassword" autocomplete="password" placeholder="********" id="currentPassword">
+    </div> -->
+    <div class="input-group ">
+      <label for="password">Password:</label>
+      <div class="relative">
+        <input type="password" name="password" autocomplete="password" placeholder="********" id="password">
+        <button type="button" id="showPassword"><i class="fa-solid fa-eye  absolute top-2 right-3 z-10"></i></button>
+      </div>
     </div>
-  </main>
-  <form action="/logout" method="post">
-    <button class="btn-delete">Logout</button>
+    <div class="input-group">
+      <label for="email">Email:</label>
+      <input type="email" name="email" autocomplete="email" value="<%= user.email %>" id="email">
+    </div>
+    <div class="input-group">
+      <label for="Birthday">Birthday:</label>
+      <input type="date" name="birthday"  autocomplete="bday"  id="Birthday">
+    </div>
+    <div class="self-end px-6 pt-2">
+      <a class="btn-edit" id="cancelButton">Cancel</a>
+      <button type="submit" class="btn-success">Save</button>
+    </div>
   </form>
+  <div class="w-full flex justify-between items-center px-4 min-h-12 rounded-2xl bg-primary-400">
+    <h1 class="font-bold  text-textMain-700">Categories: <%= user.categories.length %></h1>
+    <div class="text-textMain-700">
+      <a href="/categories"><i class="fa-solid fa-link"></i></a>
+    </div>
+  </div>
+  <div class="w-full justify-between min-h-12 rounded-2xl flex items-center px-4 bg-secondary-400">
+    <h1 class="font-bold text-textMain-700">Products: <%= user.products.length %></h1>
+    <div class="text-textMain-700">
+      <a href="/products"><i class="fa-solid fa-link"></i></a>
+    </div>
+  </div>
+
+ 
 </section>
+<div class="min-md:px-12 px-2 flex justify-end text-primary-100 w-full rounded-2xl">
+  <form action="/logout" method="post">
+    <button class="btn-success">Logout</button>
+  </form>
+</div>
+<script src="/js/cancelAccountChange.js">
+</script>
+<script src="/js/showPassword.js">
+</script>

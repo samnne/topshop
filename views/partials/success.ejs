@@ -1,7 +1,7 @@
 <% if(success && success.length) {%>
 <input type="checkbox" id="alert-toggle" class="hidden peer" />
 <header
-  class="peer-checked:scale-0 scale-100 flex justify-between items-center gap-5 p-4 border border-green-300 bg-green-400 text-white rounded transition-all duration-200 ease-in-out"
+  class="peer-checked:scale-0 max-h-20 peer-checked:max-h-0 scale-100 flex justify-between items-center gap-5 p-4 border border-green-300 bg-green-400 text-white rounded transition-all duration-200 ease-in-out"
 >
   <h1 class="text-lg font-bold"><%= success %></h1>
   <label
@@ -14,7 +14,7 @@
 <% } %> <% if(error && error.length) {%>
 <input type="checkbox" id="alert-toggle" class="hidden peer" />
 <header
-  class="peer-checked:scale-0 scale-100 flex justify-between items-center gap-5 p-4 border border-red-500 bg-red-400 text-white rounded transition-all duration-200 ease-in-out"
+  class="peer-checked:scale-0 scale-100 max-h-20 peer-checked:max-h-0 flex justify-between items-center gap-5 p-4 border border-red-500 bg-red-400 text-white rounded transition-all duration-200 ease-in-out"
 >
   <h1 class="text-lg font-bold"><%= error %></h1>
   <label

@@ -5,7 +5,6 @@ const Collection = require("../models/category");
 const Product = require("../models/product");
 
 const index = async (req, res, next) => {
-  
   const curUser = res.locals.currentUser ? res.locals.currentUser : null;
 
   const user = await User.findByUsername(curUser?.username).populate({
@@ -15,9 +14,10 @@ const index = async (req, res, next) => {
 
   res.render("categories/index", {
     user,
+    url: req._parsedOriginalUrl.path,
     collections: user?.categories ? user.categories : [],
     round: roundToDecimal,
-    displayPrice: scanPrice
+    displayPrice: scanPrice,
   });
 };
 

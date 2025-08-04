@@ -13,6 +13,7 @@ const {
   loginUser,
   logoutUser,
   renderAccount,
+  editUser,
 } = require("../controllers/users");
 const GoogleStrategy = require("passport-google-oauth20");
 
@@ -81,5 +82,5 @@ router.post(
 );
 router.post("/logout", isLoggedIn, logoutUser);
 router.get("/account", isLoggedIn, renderAccount);
-
+router.post("/account/editUser/:id", isLoggedIn, validateSchema, editUser)
 module.exports = router;

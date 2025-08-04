@@ -1,17 +1,24 @@
 <% layout("layout/boilerplate") %>
+  <script>
+    const page = "cat"
+    
+      const categories = <%- JSON.stringify(collections) %>;
+  </script>
   <main class="flex-col px-5">
-       <%if(currentUser) {%>
+       <%if(currentUser && collections.length) {%>
     <header class="mb-5 text-shadow-xs text-shadow-white">
       <h1 class=" sm:text-6xl text-4xl text-center text-shadow">Your Categories</h1>
     </header>
- 
     
+    <%- include('../partials/searchbar.ejs') %>
+
+   
 
     <ul class="flex flex-col sm:w-auto lg:w-[50rem] rounded-2xl gap-2  relative" id="list-group">
       <% for(let collection of collections){ %>
-        <li class="bg-primary-300 flex rounded-2xl  drop-shadow-textMain-500 drop-shadow-lg relative z-5 hover:rotate-x-12 active:bg-primary-500 transition-all
+        <li id="<%= collection._id %>Root" class="bg-primary-300 flex rounded-2xl  drop-shadow-textMain-500 drop-shadow-lg relative z-5 hover:rotate-x-12 active:bg-primary-500 transition-all
     duration-300 ease-in-out text-4xl p-4 text-textMain-800 <%= collection.products[0] === undefined ? "hidden"
-            : "" %>">
+            : "" %>" >
         <a role="button" data-id="<%=collection._id%>" aria-expanded="false" aria-controls="collapseExample<%= collection._id %>"
            class="peer cursor-pointer flex-2 collapse-toggle">
           
@@ -59,8 +66,6 @@
                 <div class="  flex p-2 justify-end w-[100%]">
                   <div class="flex gap-1">
                     <a href="/products/new/<%= product.id %>/edit" class="btn-edit">Edit</a>
-
-
                     <form action="/products/<%= product._id %>?_method=DELETE" id="<%= product._id %>" class=" p-0 peer-checked:block hidden fs-6 input-group-text"
                       method="post">
                       <button class="btn-delete">
@@ -83,9 +88,9 @@
     </ul>
 
    
-    <% }else if (currentUser && collections.length === 0){ %>
+    <% }else if (currentUser && !collections.length){ %>
       <section class="flex flex-col justify-center items-center gap-4 h-screen   text-shadow-white">
-        <p class="text-center">Create a new product to get started!</p>
+        <p class="text-center text-4xl">Create a new product to get started!</p>
         <a href="/products/new" class="btn-success mt-4">Create Product</a>
       </section>
       <% } else { %>
@@ -102,4 +107,7 @@
   </main>
 
     <script defer src="/js/deleteButton.js">
+    </script>
+    <script  src="/js/searchBar.js">
+   
     </script>
