@@ -32,7 +32,10 @@ const userSchema = new mongoose.Schema({
             ref: "Product"
         }
     ],
-    googleId: { type: String, unique: true, sparse: true }
+    googleId: { type: String, unique: true, sparse: true },
+    birthday: {
+        type: Date,
+    }
 
 })
 // userSchema.statics.authenticateUser = async function (username, password) {

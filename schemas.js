@@ -6,7 +6,7 @@ module.exports.userSchema = Joi.object({
         username: Joi.string().required(),
         password: Joi.string().min(6),
         email: Joi.string().required(),
-        birthday: Joi.string()
+        birthday: Joi.date()
     }).required()
 })
 module.exports.productSchema = Joi.object({

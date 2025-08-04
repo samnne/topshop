@@ -28,7 +28,7 @@
       <label for="password">Password:</label>
       <div class="relative">
         <input type="password" name="password" autocomplete="password" placeholder="********" id="password">
-        <button type="button" id="showPassword"><i class="fa-solid fa-eye  absolute top-2 right-3 z-10"></i></button>
+        <button type="button" class="absolute top-1 right-3 z-10" id="showPassword"><i class="fa-solid fa-eye  "></i></button>
       </div>
     </div>
     <div class="input-group">
@@ -37,7 +37,7 @@
     </div>
     <div class="input-group">
       <label for="Birthday">Birthday:</label>
-      <input type="date" name="birthday"  autocomplete="bday"  id="Birthday">
+      <input type="date" name="birthday" value="<%= birthday %>" autocomplete="bday"  id="Birthday">
     </div>
     <div class="self-end px-6 pt-2">
       <a class="btn-edit" id="cancelButton">Cancel</a>

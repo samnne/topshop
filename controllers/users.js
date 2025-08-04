@@ -57,7 +57,8 @@ const logoutUser = (req, res) => {
 const renderAccount = wrapAsync(async (req, res) => {
   const curUser = res.locals.currentUser ? res.locals.currentUser : null;
   const user = await User.findByUsername(curUser?.username);
-  res.render("register/account", { user });
+    const birthday = user.birthday.toISOString().split("T")[0]
+  res.render("register/account", { user, birthday });
 });
 
 const editUser = wrapAsync(async (req, res) => {
