@@ -32,8 +32,8 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const AppError = require("./utils/AppError.js");
 
-const dbURL = process.env.LOCAL_DB_URL;
-// const dbURL = process.env.MONGO_DB_URL;
+// const dbURL = process.env.LOCAL_DB_URL;
+const dbURL = process.env.MONGO_DB_URL;
 
 mongoose.set("strictQuery", true);
 mongoose
@@ -50,8 +50,6 @@ const store = new MongoStore({
   touchAfter: 24 * 3600,
 });
 
-
-
 app.engine("ejs", ejsMate);
 app.set("views", path.join(__dirname, "views"));
 
@@ -59,7 +57,7 @@ app.set("view engine", "ejs");
 
 app.use(cors(corsOptions));
 app.use(cookieParser("thisissecret"));
-app.use(session({...sessionOptions, store: store}));
+app.use(session({ ...sessionOptions, store: store }));
 app.use(flash());
 
 app.use(methodOverride("_method"));
@@ -71,37 +69,31 @@ app.use(mongoSanitize({ replaceWith: "_" }));
 app.use(passport.session());
 app.use(passport.initialize());
 const scriptSrcUrls = [
-    "https://stackpath.bootstrapcdn.com/",
-    "https://kit.fontawesome.com/1bb4953290.js",
+  "https://stackpath.bootstrapcdn.com/",
+  "https://kit.fontawesome.com/1bb4953290.js",
 
-    "https://cdn.jsdelivr.net",
-
+  "https://cdn.jsdelivr.net",
 ];
 const styleSrcUrls = [
-    "https://kit-free.fontawesome.com/",
-    "https://fonts.googleapis.com/",
-    "https://use.fontawesome.com/",
-    "https://cdn.jsdelivr.net",
- 
+  "https://kit-free.fontawesome.com/",
+  "https://fonts.googleapis.com/",
+  "https://use.fontawesome.com/",
+  "https://cdn.jsdelivr.net",
 ];
 const fontSrcUrls = [
-    "https://fonts.gstatic.com/",
-    "https://ka-f.fontawesome.com"
-]
+  "https://fonts.gstatic.com/",
+  "https://ka-f.fontawesome.com",
+];
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
       defaultSrc: [],
-    connectSrc: ["'self'", "https://ka-f.fontawesome.com"], // <-- add this
+      connectSrc: ["'self'", "https://ka-f.fontawesome.com"], // <-- add this
       scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
       styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
       workerSrc: ["'self'", "blob:"],
       objectSrc: [],
-      imgSrc: [
-        "'self'",
-        "blob:",
-        "data:",
-      ],
+      imgSrc: ["'self'", "blob:", "data:"],
       fontSrc: ["'self'", ...fontSrcUrls],
     },
   })
@@ -129,27 +121,23 @@ app.use((err, req, res, next) => {
   console.log(err);
   if (!err.message) err.message = "Invalid";
   else if (err.message === "NotFound") {
-    res
-      .status(status)
-      .render("products/notfound", {
-        message: "Sorry, that page doesnt exist",
-        subMessage: "Page Not Found",
-        numberStatus: status,
-      });
+    res.status(status).render("products/notfound", {
+      message: "Sorry, that page doesnt exist",
+      subMessage: "Page Not Found",
+      numberStatus: status,
+    });
   } else if (err.message === "TypeError") {
-    res
-      .status(status)
-      .render("products/notfound", {
-        message: "AI error",
-        subMessage: "Google Gemini couldnt connect!",
-        numberStatus: status,
-      });
+    res.status(status).render("products/notfound", {
+      message: "AI error",
+      subMessage: "Google Gemini couldnt connect!",
+      numberStatus: status,
+    });
   }
 });
 
-app.get("/", (req, res)=>{
-  res.redirect("/categories")
-})
+app.get("/", (req, res) => {
+  res.redirect("/categories");
+});
 
 app.all(/(.*)/, (err, req, res, next) => {
   next(new AppError("NotFound", 404));
