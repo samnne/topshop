@@ -31,8 +31,8 @@ const loginUser = async (req, res) => {
   req.flash("success", "Welcome back");
   const redirectUrl = res.locals.returnTo || "/account";
   delete req.session.returnTo;
-  const url_array = req.query;
-
+  const url_array = req.body;
+ 
   const { react, username, password } = url_array;
   if (react === "true") {
     const user = await User.findOne({ username })
@@ -57,7 +57,7 @@ const logoutUser = (req, res) => {
 const renderAccount = wrapAsync(async (req, res) => {
   const curUser = res.locals.currentUser ? res.locals.currentUser : null;
   const user = await User.findByUsername(curUser?.username);
-    const birthday = user.birthday.toISOString().split("T")[0]
+    const birthday = user.birthday?.toISOString().split("T")[0]
   res.render("register/account", { user, birthday });
 });
 

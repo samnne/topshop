@@ -32,8 +32,8 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const AppError = require("./utils/AppError.js");
 
-// const dbURL = process.env.LOCAL_DB_URL;
-const dbURL = process.env.MONGO_DB_URL;
+const dbURL = process.env.LOCAL_DB_URL;
+// const dbURL = process.env.MONGO_DB_URL;
 
 mongoose.set("strictQuery", true);
 mongoose
@@ -63,6 +63,7 @@ app.use(session({...sessionOptions, store: store}));
 app.use(flash());
 
 app.use(methodOverride("_method"));
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(mongoSanitize({ replaceWith: "_" }));

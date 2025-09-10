@@ -21,7 +21,7 @@ const AppError = require("../utils/AppError");
 const validateProduct = (req, res, next) => {
   const product = { product: req.body };
   const curUser = res.locals.currentUser ? res.locals.currentUser : null;
-
+  
   product.product.owner = curUser
 
   const { error } = productSchema.validate(product);

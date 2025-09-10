@@ -116,6 +116,8 @@ const updateProduct = async (req, res) => {
   res.redirect(`/products/${product.id}`);
 };
 
+// Add Update Price Whether 
+
 const deleteProduct = async (req, res) => {
   const { id } = req.params;
   const curUser = res.locals.currentUser;
