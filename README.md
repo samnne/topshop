@@ -2,6 +2,12 @@
 Never be surprised again when you go shopping. TopShop aims to be your personal compainion to know how much 
 a trip to the grocery store will be to give you more certainty. Using AI to generate shop prices determeined by your area.
 
+# How to Use
+1. Create a user via SignUp (or SignIn if existing user)
+2. Click on the `+` in the Navigation Bar.
+3. Input the Product you with to add to your shopping list.
+4. Viola!
+
 ## Features
 - AI generated prices
 - Easily Sort your products by category
