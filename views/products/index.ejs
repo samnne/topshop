@@ -32,14 +32,9 @@
     </div>
   </section>
     <% } else { %>
-           <header class="h-[80dvh] w-full min-sm:text-5xl max-sm:text-2xl flex gap-5 flex-col items-center justify-center main-text" >
-          <h1 style="text-shadow: 4px 2px 10px rgba(255, 255, 255, 0.596);">TopShop</h1>
-          <h1 class="text-center px-5" style="text-shadow: 4px 2px 10px rgba(255, 255, 255, 0.596);">Sign Up to never be surprised again!</h1>
-          <div>
-            <a role="button" href="/register"  class="btn-success min-sm:text-2xl">Sign Up</a>
-            <a role="button" href="/login" class="btn-edit min-sm:text-2xl">Log in</a>
-          </div> 
-        </header>
+          <%- include('../partials/landingpage.ejs') %>
+
+
               <% } %>
   <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", ()=>{

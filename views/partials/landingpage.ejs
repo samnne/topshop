@@ -1,0 +1,61 @@
+<header class="flex justify-center items-center">
+  <h1 class="text-2xl">Welcome to TopShop</h1>
+</header>
+<section class="flex flex-col items-center gap-4 w-full h-full justify-center">
+  <div class="grid  grid-cols-1 md:grid-cols-[2fr_1fr] gap-4 w-3/4 sm:w-1/2 h-full justify-center">
+    <div class="order-1 landing-page-card">
+      <article>
+        <p class="text-lg font-semibold">
+          TopShop - An easy way to manage your groceries.
+        </p>
+        <div class="w-1/2 h-1/2">
+          <img src="assets/shopping-bag.png" alt="" />
+        </div>
+      </article>
+    </div>
+    <div class="landing-page-card order-2">
+      <article>
+        <p class="font-semibold">
+          Easily budget your life with clear expectations! We generate a range
+          of prices per products you input!
+        </p>
+      </article>
+    </div>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-[1fr_2fr] landing-page-grid">
+    <div class="order-1 landing-page-card">
+      <article class="">
+        <p class="text-lg font-semibold">Why You Should use it!</p>
+        <ul class="list-none flex flex-col gap-2 nth-[n_of_li]:">
+          <li>
+            <i class="bg-green-500 rounded-2xl p-1 fa-solid fa-check"></i>
+            Fast!
+          </li>
+          <li>
+            <i class="bg-green-500 rounded-2xl p-1 fa-solid fa-check"></i>
+            Free!
+          </li>
+          <li>
+            <i class="bg-green-500 rounded-2xl p-1 fa-solid fa-check"></i>
+            Productivity!
+          </li>
+        </ul>
+      </article>
+    </div>
+    <div class="landing-page-card order-2">
+      <article class="flex flex-col gap-5">
+        <p class="font-semibold">
+          A quicker, concrete grocery trip could be yours! Get Started Today by
+          Signing Up!
+        </p>
+      </article>
+      <div class="w-full flex gap-4 mt-4 justify-end max-sm:flex-col">
+        <i class="fa-solid max-sm:opacity-0 fa-hand-point-right sm:h-full text-primary-500 sm:p-4 sm:scale-125 animate-none"></i>
+        <a role="button" href="/register" class="btn-success text-secondary-300 sm:text-2xl"
+          >Sign Up</a
+        >
+        <a role="button" href="/login" class="btn-edit text-secondary-300 sm:text-2xl">Log in</a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -182,5 +182,12 @@ html {
   .valid-text{
     @apply mt-1 text-sm font-light text-red-600 hidden peer-invalid:block;
   }
+
+  .landing-page-card{
+    @apply h-full text-black capitalize bg-secondary-400 border-4 rounded-2xl border-black w-full p-6;
+  }
+  .landing-page-grid{
+    @apply gap-4 w-3/4 sm:w-1/2 h-full justify-center;
+  }
 }
 @plugin 'tailwind-scrollbar';

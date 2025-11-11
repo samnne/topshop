@@ -20,7 +20,7 @@ const cookieParser = require("cookie-parser");
 const User = require("./models/userSchema");
 
 const helmet = require("helmet");
-const MongoStore = require("connect-mongo")(session);
+const MongoStore = require("connect-mongo");
 const { sessionOptions } = require("./utils/baseFields.js");
 
 const cors = require("cors");
@@ -32,9 +32,10 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const AppError = require("./utils/AppError.js");
 
+
 // const dbURL = process.env.LOCAL_DB_URL;
 const dbURL = process.env.MONGO_DB_URL;
-
+console.log(dbURL);
 mongoose.set("strictQuery", true);
 mongoose
   .connect(dbURL)
@@ -45,10 +46,22 @@ mongoose
     console.log("MONGO Error", e);
   });
 
-const store = new MongoStore({
-  url: dbURL,
-  touchAfter: 24 * 3600,
-});
+
+
+
+
+
+app.use(
+  session({
+    ...sessionOptions,
+    store: new MongoStore({
+      mongoUrl: dbURL, // must include database name
+      touchAfter: 14 * 24 * 60 * 60, // optional: 14 days
+      
+    }),
+  })
+);
+
 
 app.engine("ejs", ejsMate);
 app.set("views", path.join(__dirname, "views"));
@@ -57,7 +70,7 @@ app.set("view engine", "ejs");
 
 app.use(cors(corsOptions));
 app.use(cookieParser("thisissecret"));
-app.use(session({ ...sessionOptions, store: store }));
+
 app.use(flash());
 
 app.use(methodOverride("_method"));
@@ -96,7 +109,7 @@ app.use(
       imgSrc: ["'self'", "blob:", "data:"],
       fontSrc: ["'self'", ...fontSrcUrls],
     },
-  })
+  }),
 );
 
 passport.use(new LocalStrategy(User.authenticate()));
