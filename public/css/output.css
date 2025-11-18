@@ -435,9 +435,6 @@
   .w-1\/2 {
     width: calc(1/2 * 100%);
   }
-  .w-3\/4 {
-    width: calc(3/4 * 100%);
-  }
   .w-12 {
     width: calc(var(--spacing) * 12);
   }
@@ -1146,11 +1143,6 @@
       width: 100%;
     }
   }
-  .sm\:w-1\/2 {
-    @media (width >= 40rem) {
-      width: calc(1/2 * 100%);
-    }
-  }
   .sm\:w-auto {
     @media (width >= 40rem) {
       width: auto;
@@ -1196,12 +1188,6 @@
     @media (width >= 40rem) {
       font-size: var(--text-xl);
       line-height: var(--tw-leading, var(--text-xl--line-height));
-    }
-  }
-  .sm\:text-2xl {
-    @media (width >= 40rem) {
-      font-size: var(--text-2xl);
-      line-height: var(--tw-leading, var(--text-2xl--line-height));
     }
   }
   .sm\:text-6xl {
@@ -1535,7 +1521,7 @@ html {
     justify-content: center;
     gap: calc(var(--spacing) * 4);
     @media (width >= 40rem) {
-      width: calc(1/2 * 100%);
+      width: calc(2/3 * 100%);
     }
   }
 }

@@ -32,24 +32,37 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const AppError = require("./utils/AppError.js");
 
-
 // const dbURL = process.env.LOCAL_DB_URL;
 const dbURL = process.env.MONGO_DB_URL;
-console.log(dbURL);
+// Around line 30-35 in your code
 mongoose.set("strictQuery", true);
+
+const mongooseOptions = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 5000,
+  socketTimeoutMS: 45000,
+};
+
+// Add SSL options for production (Render)
+if (process.env.NODE_ENV === "production") {
+  mongooseOptions.ssl = true;
+  mongooseOptions.tls = true;
+  mongooseOptions.tlsAllowInvalidCertificates = false;
+}
+
 mongoose
-  .connect(dbURL)
+  .connect(dbURL, mongooseOptions)
   .then(() => {
     console.log("MONGO CONNECTION OPENED");
   })
   .catch((e) => {
     console.log("MONGO Error", e);
+    // Don't exit process immediately in production, allow retries
+    if (process.env.NODE_ENV !== "production") {
+      process.exit(1);
+    }
   });
-
-
-
-
-
 
 app.use(
   session({
@@ -57,11 +70,9 @@ app.use(
     store: new MongoStore({
       mongoUrl: dbURL, // must include database name
       touchAfter: 14 * 24 * 60 * 60, // optional: 14 days
-      
     }),
-  })
+  }),
 );
-
 
 app.engine("ejs", ejsMate);
 app.set("views", path.join(__dirname, "views"));

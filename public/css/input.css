@@ -164,11 +164,12 @@ html {
     @apply shadow-stone-500 shadow-sm appearance-none  rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none;
   }
   .shadow-accent {
-    box-shadow: 0 4px 6px -1px rgba(189, 174, 128, 0.2),
+    box-shadow:
+      0 4px 6px -1px rgba(189, 174, 128, 0.2),
       0 2px 4px -1px rgba(189, 174, 128, 0.5);
   }
   .input-group {
-    @apply px-5 flex  pb-2 flex-col justify-between  flex-wrap  text-textMain-800 items-start ;
+    @apply px-5 flex  pb-2 flex-col justify-between  flex-wrap  text-textMain-800 items-start;
   }
   .input-group input {
     @apply p-1 shadow-lg font-semibold outline-0 appearance-none px-2 rounded-lg bg-white rounded-tr;
@@ -179,15 +180,15 @@ html {
   .account-pills {
     @apply bg-accent-300  px-2 py-4 rounded-2xl;
   }
-  .valid-text{
+  .valid-text {
     @apply mt-1 text-sm font-light text-red-600 hidden peer-invalid:block;
   }
 
-  .landing-page-card{
+  .landing-page-card {
     @apply h-full text-black capitalize bg-secondary-400 border-4 rounded-2xl border-black w-full p-6;
   }
-  .landing-page-grid{
-    @apply gap-4 w-3/4 sm:w-1/2 h-full justify-center;
+  .landing-page-grid {
+    @apply gap-4 w-3/4 sm:w-2/3 h-full justify-center;
   }
 }
 @plugin 'tailwind-scrollbar';
