@@ -3,10 +3,8 @@ const router = express.Router();
 const Collection = require("../models/category");
 const Product = require("../models/product");
 const wrapAsync = require("../utils/wrapAsync");
-const { avgPrice, calcTotal, roundToDecimal } = require("../utils/avgPrice");
-const { categories } = require("../utils/baseFields");
 
-const User = require("../models/userSchema");
+const { categories } = require("../utils/baseFields");
 
 const { index, deleteAllProductsInCategory } = require("../controllers/categories");
 
@@ -40,9 +38,11 @@ router.get("/admin/c2s3c02c2s5ckistflight127", (req, res)=>{
   res.redirect("/categories")
 })
 
+
 router.route("/deleteAll/:id").delete(wrapAsync(
   deleteAllProductsInCategory
 ))
+//router.get("/update", wrapAsync(changeDBRoute))
 
 // router.get("/greet", (req, res) => {
 //     const { name = "No-name" } = req.cookies

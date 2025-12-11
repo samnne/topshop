@@ -2,7 +2,7 @@
     <% for(let product of products){ %>
         <li
             class="flex flex-wrap text-textMain-900  first:rounded-t-sm last:rounded-b-sm hover:bg-textMain-400 justify-between" id="<%= product._id %>Root">
-            <div class=" p-2 ps-4 w-[100%]">
+            <div class=" p-2 ps-4 w-full">
                 <a class="" href="/products/<%= product.id %>">
                     <b class="hover:text-background-100">
                         <%= product.name %>:
@@ -18,7 +18,7 @@
                     <%= product.qty %> : <%= product.buy==="on" ? "Buy" : "Dont Buy" %>
                 </span>
             </div>
-            <div class="  flex p-2 w-[100%] justify-end">
+            <div class="  flex p-2 w-full justify-end">
                 <div class="flex gap-1 ">
                     <a href="/products/new/<%= product.id %>/edit" class="btn-edit">Edit</a>
                     <form action="/products/<%= product._id %>?_method=DELETE" id="<%= product._id %>" class=" p-0 peer-checked:block hidden fs-6 input-group-text"

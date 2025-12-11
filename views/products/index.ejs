@@ -1,52 +1,42 @@
 <% layout("layout/boilerplate.ejs") %>
-<% if(user){ %>
-  <script>
-    const page = "prod"
-    const products = <%- JSON.stringify(products) %>
-  </script>
-  <section class="flex-col ">
-    <h1 class="min-sm:text-5xl text-4xl text-center mb-4 " style="text-shadow: 4px 2px 10px rgba(255, 255, 255, 0.596);">
-      <%= category.toUpperCase() %> Products!
-    </h1>
+ <% if(user){ %>
 
-    <main class="container px-5 overflow-y-auto h-[60dvh] custom-scrollbar scroll-m-5 ">
-     
-      
+<section class="flex-col">
+  <h1
+    class="sm:text-5xl text-4xl text-center mb-4"
+    style="text-shadow: 4px 2px 10px rgba(255, 255, 255, 0.596)"
+  >
+    <%= category.toUpperCase() %> Products!
+  </h1>
 
+  <main
+    class="container px-5 overflow-y-auto h-[60dvh] custom-scrollbar scroll-m-5"
+  >
+    <%- include('../partials/productPartial.ejs') %>
+  </main>
 
-          <%- include('../partials/searchbar.ejs') %>
-
-   
-      <%- include('../partials/productPartial.ejs') %>
-  
- 
-
-      
-    </main>
-
-    <div class="mt-auto px-5 text-2xl py-4">
-      <div class="">
-        <h3 class="display-6 main-text" >Average Total Cost: <span class="" id="total-cost"> ~$<%= (sum === "0-0") ? "0" : sum %></span>
-        </h3>
-      </div>
+  <div class="mt-auto px-5 text-2xl py-4">
+    <div class="">
+      <h3 class="display-6 main-text">
+        Average Total Cost:
+        <span class="" id="total-cost">
+          ~$<%= (sum === "0-0") ? "0" : sum %></span
+        >
+      </h3>
     </div>
-  </section>
-    <% } else { %>
-          <%- include('../partials/landingpage.ejs') %>
+  </div>
+</section>
+<% } else { %> <%- include('../partials/landingpage.ejs') %> <% } %>
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+      const cost = document.getElementById("total-cost");
+      cost.classList.add("animate");
 
-
-              <% } %>
-  <script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", ()=>{
       setTimeout(() => {
-  const cost = document.getElementById("total-cost");
-  cost.classList.add("animate");
+        cost.classList.remove("animate");
+      }, 350);
+    }, 200);
+  });
+</script>
 
-  setTimeout(() => {
-    cost.classList.remove("animate");
-  }, 350);
-}, 200);
-    })
-  </script>
-
-  <script src="/js/searchBar.js"></script>

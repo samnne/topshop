@@ -1,12 +1,11 @@
 let input = document.querySelector("#search-items");
 
-
 if (input) {
-  input.addEventListener("input", handleInput)
-    
-} 
+  input.addEventListener("input", handleInput);
+}
 
 function computeInput(list, event) {
+  console.log(list)
   list.forEach((item) => {
     const htmlItem = document.getElementById(`${item._id}Root`);
     if (!item.name.toLowerCase().includes(event.target.value)) {
@@ -17,15 +16,15 @@ function computeInput(list, event) {
   });
 }
 
+function handleInput(e) {
+  if (page.includes("cat") && !page.includes("?")) {
+    console.log("gsd")
+    const itemLists = categories;
+    computeInput(itemLists, e);
+  } else {
+    const itemLists = products;
+    console.log("hey")
 
-function handleInput(e){
- 
-    if (page === "cat") {
-        const itemLists = categories;
-        computeInput(itemLists, e);
-    } else {
-      const itemLists = products;
-      computeInput(itemLists, e);
-    }
-  
+    computeInput(itemLists, e);
+  }
 }

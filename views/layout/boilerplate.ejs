@@ -1,19 +1,40 @@
 <!DOCTYPE html>
+
 <html lang="en">
   <%- include('../partials/head.ejs') %>
   <body
-    class="min-h-screen bg-gradient-to-br from-65%% from-textMain-900 to-textMain-800 flex flex-col justify-between text-background-900 font-sans"
+    class="min-h-screen bg-white flex flex-col justify-between text-textMain-900 font-sans"
   >
-    <div class="flex flex-col">
-      <%- include('../partials/navbar.ejs') %>
 
-      <main class="flex justify-center items-center flex-col gap-5 h-auto relative">
-        <%- include('../partials/success.ejs') %> <%- body %>
-      </main>
-    </div>
-    <%- include('../partials/disclaimer.ejs') %> 
-    <script defer src="/js/toggleCollapse.js">
-      
-    </script>
+  <%- include('../partials/navbar.ejs') %>
+   
+  
+  <main class="flex flex-2 p-4">
+
+      <aside class="flex flex-col p-4 flex-1 space-y-4 max-sm:hidden">
+        <% for (let item of navLinks) {%>
+        <a class="text-textMain-700 appearance-none" href="/<%= item.link %>">
+          <div
+            class="w-full flex  justify-start items-center py-4 font-bold hover:bg-primary-300 transition-all duration-200 px-2 rounded-full shadow-md <%=  (url || "").includes(item.link) ? 'bg-primary-500 text-white' : 'bg-white text-black' %>"
+          >
+            <i class="<%= item.icon %> w-fit flex-1 text-center  px-2"></i>
+            <span class="w-full flex-10">
+              <%= item.name %>
+            </span>
+          </div>
+        </a>
+        <% } %>
+      </aside>
+
+      <section
+        class="flex flex-col flex-2 basis-lg py-4 rounded-lg bg-gray-100"
+      >
+        <%- body %>
+      </section>
+    </main>
+    <!-- <%- include('../partials/disclaimer.ejs') %> -->
+
+   <%- include('../partials/sidebar.ejs') %>
+
   </body>
 </html>

@@ -5,7 +5,8 @@
   --color-primary-200: #ebd3cc;
   --color-primary-300: #e1bdb3;
   --color-primary-400: #d7a799;
-  --color-primary-500: #cd9180;
+  /* --color-primary-500: #cd9180; */
+  --color-primary-500: #841C26;
   --color-primary-600: #c37b66;
   --color-primary-700: #b9654d;
   --color-primary-800: #af4f33;
@@ -15,7 +16,8 @@
   --color-secondary-200: #ebe5db;
   --color-secondary-300: #e1d8c9;
   --color-secondary-400: #d7cbb7;
-  --color-secondary-500: #cdbea5;
+  --color-secondary-500: #BA274A;
+  /* --color-secondary-500: #cdbea5; */
   --color-secondary-600: #c3b193;
   --color-secondary-700: #b9a481;
   --color-secondary-800: #af976f;
@@ -66,8 +68,8 @@
   --color-primary-200: #ebd3cc;
   --color-primary-300: #e1bdb3;
   --color-primary-400: #d7a799;
-  --color-primary-500: #cd9180;
-  --color-primary-600: #c37b66;
+  --color-primary-500: #BA274A;
+  --color-primary-600: #BA274A;
   --color-primary-700: #b9654d;
   --color-primary-800: #af4f33;
   --color-primary-900: #a5391a;
@@ -76,7 +78,7 @@
   --color-secondary-200: #ebe5db;
   --color-secondary-300: #e1d8c9;
   --color-secondary-400: #d7cbb7;
-  --color-secondary-500: #cdbea5;
+  --color-secondary-500: #BA274A;
   --color-secondary-600: #c3b193;
   --color-secondary-700: #b9a481;
   --color-secondary-800: #af976f;
@@ -86,7 +88,7 @@
   --color-accent-200: #ebe5cc;
   --color-accent-300: #e1d8b3;
   --color-accent-400: #d7cb99;
-  --color-accent-500: #cdbe80;
+  --color-accent-500: #F5B0CB;
   --color-accent-600: #c3b166;
   --color-accent-700: #b9a44d;
   --color-accent-800: #af9733;
@@ -98,7 +100,7 @@
   --color-textMain-400: #999595;
   --color-textMain-500: #807b7b;
   --color-textMain-600: #666060;
-  --color-textMain-700: #4d4646;
+  --color-textMain-700: #332b2b;
   --color-textMain-800: #332b2b;
   --color-textMain-900: #1a1010;
 
@@ -146,7 +148,7 @@ html {
 }
 @layer components {
   .navbar-icon {
-    @apply relative hover:z-10 hover:rotate-x-[22deg]  shadow-md bg-primary-600 text-background-100 hover:bg-primary-300 flex flex-col justify-center p-1.5 rounded-full my-2 w-9 h-9 cursor-pointer items-center transition-all ease-in-out duration-100;
+    @apply relative hover:z-10 hover:rotate-x-22    shadow-md bg-primary-600 text-background-100 hover:bg-primary-300 flex flex-col justify-center p-3 rounded-full  cursor-pointer items-center transition-all ease-in-out duration-100;
   }
   .icon-link {
     @apply w-full h-full flex justify-center items-center;

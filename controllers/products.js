@@ -1,13 +1,8 @@
 const Product = require("../models/product");
 const Collection = require("../models/category");
-const {
-  avgPrice,
-  calcTotal,
-  roundToDecimal,
-  scanPrice,
-} = require("../utils/avgPrice");
+const { avgPrice, calcTotal, scanPrice } = require("../utils/avgPrice");
 const { categories } = require("../utils/baseFields");
-
+const AppError = require("../utils/AppError");
 const User = require("../models/userSchema");
 
 const index = async (req, res) => {
@@ -25,7 +20,7 @@ const index = async (req, res) => {
 
     res.render("products/index", {
       user,
-      url: req._parsedOriginalUrl.path,
+
       products: newProds,
       category,
       sum: newSum,
@@ -34,9 +29,10 @@ const index = async (req, res) => {
   } else {
     const sum = calcTotal(user ? user.products : []);
     // res.json(ps)
+
     res.render("products/index", {
       user,
-      url: req._parsedOriginalUrl.path,
+
       products: user ? user.products : [],
       category: "All",
       sum,
@@ -116,7 +112,7 @@ const updateProduct = async (req, res) => {
   res.redirect(`/products/${product.id}`);
 };
 
-// Add Update Price Whether 
+// Add Update Price Whether
 
 const deleteProduct = async (req, res) => {
   const { id } = req.params;

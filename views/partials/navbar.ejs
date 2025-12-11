@@ -1,37 +1,41 @@
-<section class="flex justify-center items-center h-20">
-  <div class="container fixed p-2 top-2 z-20">
-    <nav
-      class="flex justify-between items-center bg-secondary-700 px-2 rounded-2xl shadow-accent"
-    >
-      <div class="flex space-x-2">
-        <div class="navbar-icon">
-          <a href="/categories" class="icon-link"
-            ><i class="fa-solid fa-house fa-lg"> </i>
-          </a>
-        </div>
-        <div class="navbar-icon">
-          <a href="/products#about" class="icon-link">
-            <i class="fa-solid fa-circle-info fa-lg"></i>
-          </a>
-        </div>
-      </div>
-      <div class="flex space-x-2">
-        <div class="navbar-icon">
-          <a href="/account" class="icon-link">
-            <i class="fa-solid fa-circle-user"></i>
-          </a>
-        </div>
-        <div class="navbar-icon">
-          <a href="/products/new" class="icon-link">
-            <i class="fa-solid fa-plus"></i>
-          </a>
-        </div>
-        <div class="navbar-icon">
-          <a href="/products" class="icon-link">
-            <i class="fa-solid fa-left-long"></i>
-          </a>
-        </div>
-      </div>
-    </nav>
+<script>
+  // safe fallbacks so EJS won't error when a page doesn't provide these locals
+  const page = `<%- typeof url !== "undefined" ? url : "" %>`;
+  const collectionsData = <%- JSON.stringify(typeof collections !== "undefined" ? collections : []) %>;
+  const productsData = <%- JSON.stringify(typeof products !== "undefined" ? products : []) %>;
+
+  let categories = [];
+
+  let products = productsData || [];
+
+  if (Array.isArray(collectionsData) && collectionsData.length > 0) {
+    categories = collectionsData;
+  }
+</script>
+
+<header class="px-2 flex py-4 items-center justify-between w-full">
+  <div class="navbar-icon">
+    <a href="/categories" class="icon-link"
+      ><i class="fa-solid fa-house"></i>
+    </a>
+  
   </div>
-</section>
+  <% %>
+  <div><%- !url.includes("account") ? include('../partials/searchbar.ejs') : "" %></div>
+  <div class="flex items-center gap-2 max-md:hidden">
+    <div class="navbar-icon">
+      <a href="/products/new" class="icon-link"
+        ><i class="fa-solid fa-plus"></i>
+      </a>
+    </div>
+    <div class="navbar-icon">
+      <a href="/account" class="icon-link"><i class="fa-solid fa-user"></i> </a>
+    </div>
+  </div>
+  <div class="navbar-icon md:hidden toggle-sidebar-btn">
+    <button id="toggle-sidebar-btn" class="icon-link "><i class="fa-solid fa-bars"></i> </>
+  </div>
+</header>
+
+<script src="/js/searchBar.js"></script>
+<script src="/js/toggleSidebar.js"></script>

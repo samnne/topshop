@@ -10,7 +10,6 @@ const {
   index,
   renderNewProductForm,
   createNewProduct,
-  deleteAllProducts,
   showProduct,
   renderEditProductForm,
   updateProduct,

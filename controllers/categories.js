@@ -1,5 +1,5 @@
 const { roundToDecimal, scanPrice } = require("../utils/avgPrice");
-
+const { navLinks, allIcons } = require("../utils/constants.js");
 const User = require("../models/userSchema");
 const Collection = require("../models/category");
 const Product = require("../models/product");
@@ -11,13 +11,17 @@ const index = async (req, res, next) => {
     path: "categories",
     populate: [{ path: "products" }, { path: "owner" }],
   });
-
+  
+  
+  
   res.render("categories/index", {
     user,
-    url: req._parsedOriginalUrl.path,
+ 
     collections: user?.categories ? user.categories : [],
     round: roundToDecimal,
+    icons: allIcons,
     displayPrice: scanPrice,
+   
   });
 };
 
@@ -70,7 +74,25 @@ const deleteAllProductsInCategory = async (req, res, next) => {
   res.redirect("/categories");
 };
 
+// const changeDBRoute = async (req, res, next) => {
+//   const categories = await Collection.find({});
+
+//   for (let c of categories) {
+//     await Collection.findByIdAndUpdate(
+//       c._id,
+//       { ...c, icon: allIcons.find((itm) => itm.name === c.name).icon },
+//       {
+//         new: true,
+//         runValidators: true,
+//       }
+//     );
+//   }
+
+//   res.send("ok");
+// };
+
 module.exports = {
   index,
   deleteAllProductsInCategory,
+
 };

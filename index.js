@@ -14,6 +14,7 @@ const methodOverride = require("method-override");
 const userRoutes = require("./routes/users");
 const categoryRoutes = require("./routes/categories");
 const productRoutes = require("./routes/products.js");
+const recipeRoutes = require("./routes/recipes.js");
 const flash = require("connect-flash");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
@@ -23,18 +24,19 @@ const helmet = require("helmet");
 const MongoStore = require("connect-mongo");
 const { sessionOptions } = require("./utils/baseFields.js");
 
-const cors = require("cors");
-const corsOptions = {
-  origin: ["http://localhost:5173"],
-};
+// const cors = require("cors");
+// const corsOptions = {
+//   origin: ["http://localhost:5173"],
+// };
 
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const AppError = require("./utils/AppError.js");
+const { navLinks } = require("./utils/constants.js");
 
 // const dbURL = process.env.LOCAL_DB_URL;
 const dbURL = process.env.MONGO_DB_URL;
-console.log(dbURL);
+
 mongoose.set("strictQuery", true);
 mongoose
   .connect(dbURL)
@@ -60,7 +62,7 @@ app.set("views", path.join(__dirname, "views"));
 
 app.set("view engine", "ejs");
 
-app.use(cors(corsOptions));
+
 app.use(cookieParser("thisissecret"));
 
 app.use(flash());
@@ -111,19 +113,26 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
-
+  res.locals.products = [];
+  res.locals.collections = [];
+  res.locals.navLinks = navLinks;
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
+  // add a safe url value used by your layout/partials
+  res.locals.url = req._parsedOriginalUrl ? req._parsedOriginalUrl.path : req.originalUrl || "";
   next();
 });
 
 app.use("/", userRoutes);
 app.use("/categories", categoryRoutes);
 app.use("/products", productRoutes);
+//app.use("/recipes", recipeRoutes)
 
 app.use((err, req, res, next) => {
+  
+
   const { status = 500 } = err;
-  console.log(err);
+
   if (!err.message) err.message = "Invalid";
   else if (err.message === "NotFound") {
     res.status(status).render("products/notfound", {
@@ -141,6 +150,7 @@ app.use((err, req, res, next) => {
 });
 
 app.get("/", (req, res) => {
+  
   res.redirect("/categories");
 });
 
@@ -149,5 +159,7 @@ app.all(/(.*)/, (err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`App is listening on PORT: ${PORT}`);
+  console.log(`App is listening on PORT: ${PORT
+  
+  }`);
 });

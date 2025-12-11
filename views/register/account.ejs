@@ -4,9 +4,9 @@
   const theUser = <%- JSON.stringify(user) %>
 </script>
 
-<section class="grid min-sm:grid-cols-2 min-md:px-12 px-2 text-primary-100 w-full rounded-2xl  gap-4 min-h-[50vh]">
+<section class="grid sm:grid-cols-2 md:px-12 px-2  w-full rounded-2xl  gap-4 min-h-[50vh]">
  
-  <div class="min-sm:w-full min-sm:border-r-2 dark:text-background-900 text-textMain-700 h-full border-white">
+  <div class="sm:w-full sm:border-r-2  text-textMain-700 h-full border-white">
     <header>
       <h1 class="text-4xl font-semibold mb-2">Your Account</h1>
     </header>
@@ -35,10 +35,7 @@
       <label for="email">Email:</label>
       <input type="email" name="email" autocomplete="email" value="<%= user.email %>" id="email">
     </div>
-    <div class="input-group">
-      <label for="Birthday">Birthday:</label>
-      <input type="date" name="birthday" value="<%= birthday %>" autocomplete="bday"  id="Birthday">
-    </div>
+
     <div class="self-end px-6 pt-2">
       <a class="btn-edit" id="cancelButton">Cancel</a>
       <button type="submit" class="btn-success">Save</button>
@@ -59,7 +56,7 @@
 
  
 </section>
-<div class="min-md:px-12 px-2 flex justify-end text-primary-100 w-full rounded-2xl">
+<div class="md:px-12 px-2 flex justify-end text-primary-100 w-full rounded-2xl">
   <form action="/logout" method="post">
     <button class="btn-success">Logout</button>
   </form>
