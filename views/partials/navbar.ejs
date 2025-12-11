@@ -21,7 +21,7 @@
   
   </div>
   <% %>
-  <div><%- !url.includes("account") ? include('../partials/searchbar.ejs') : "" %></div>
+  <div><%-(!url.includes("account") ) ? include('../partials/searchbar.ejs') : "" %></div>
   <div class="flex items-center gap-2 max-md:hidden">
     <div class="navbar-icon">
       <a href="/products/new" class="icon-link"
