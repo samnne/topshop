@@ -25,12 +25,12 @@ async function avgPrice(product, next, req) {
       },
     });
     const price = response.text;
-    let newPrice = ""
-    for (let i = 0; i < price.length; i++){
-      if (price[i]===`"`) continue;
-      newPrice += price[i]
+    let newPrice = "";
+    for (let i = 0; i < price.length; i++) {
+      if (price[i] === `"`) continue;
+      newPrice += price[i];
     }
-  
+
     const updatedProduct = await Product.findByIdAndUpdate(product._id, {
       price: newPrice,
     });
@@ -64,28 +64,33 @@ function scanPrice(price) {
       lowerLimit += price[i];
     }
   }
+
   lowerLimit = roundToDecimal(parseFloat(lowerLimit));
   upperLimit = roundToDecimal(parseFloat(upperLimit));
   return `${lowerLimit}-${upperLimit}`;
 }
 
 function calcTotal(allProducts = []) {
-  let totalSum = "";
-  let lowerLimit = 0;
-  let upperLimit = 0;
-  allProducts.forEach((cur) => {
-    let dash = cur.price.indexOf("-");
-    if (cur.buy === "on") {
-      lowerLimit += parseFloat(cur.price.slice(1, dash)) * cur.qty;
-      upperLimit +=
-        parseFloat(cur.price.slice(dash + 1, cur.price.length)) * cur.qty;
-    }
-    //console.log(`price: ${cur.price} lower upper: ${lowerLimit} ${upperLimit}`)
-  });
-  totalSum = `${roundToDecimal(lowerLimit)}-${roundToDecimal(upperLimit)}`;
 
-  // console.log(totalSum, upperLimit)
-  return totalSum;
+  let lowerLimit = 0
+  let upperLimit = 0
+  try {
+    for (let cur of allProducts) {
+      if (cur.buy === "on") {
+        let price = scanPrice(cur.price);
+        let dash = "-"
+        lowerLimit += parseFloat(price.split(dash)[0]) * cur.qty 
+        upperLimit += parseFloat(price.split(dash)[1]) * cur.qty 
+
+        // console.log(`price: ${price} lower upper: ${lowerLimit} ${upperLimit}`)
+        
+      }
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  //console.log(totalSum, upperLimit)
+  return `${lowerLimit}-${upperLimit}`;
 }
 
 module.exports = { avgPrice, calcTotal, roundToDecimal, scanPrice };

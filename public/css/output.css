@@ -409,8 +409,21 @@
   .h-\[60dvh\] {
     height: 60dvh;
   }
+  .h-\[70dvh\] {
+    height: 70dvh;
+  }
+  .h-\[80dvh\] {
+    height: 80dvh;
+  }
   .h-\[116dvh\] {
     height: 116dvh;
+  }
+  .h-dvh {
+    height: 100dvh;
+  }
+  .h-fit {
+    height: -moz-fit-content;
+    height: fit-content;
   }
   .h-full {
     height: 100%;
@@ -423,6 +436,12 @@
   }
   .max-h-20 {
     max-height: calc(var(--spacing) * 20);
+  }
+  .max-h-dvh {
+    max-height: 100dvh;
+  }
+  .max-h-full {
+    max-height: 100%;
   }
   .min-h-12 {
     min-height: calc(var(--spacing) * 12);
@@ -586,6 +605,9 @@
   }
   .self-end {
     align-self: flex-end;
+  }
+  .overflow-auto {
+    overflow: auto;
   }
   .overflow-hidden {
     overflow: hidden;
@@ -1217,6 +1239,11 @@
       position: absolute;
     }
   }
+  .md\:relative {
+    @media (width >= 48rem) {
+      position: relative;
+    }
+  }
   .md\:top-32 {
     @media (width >= 48rem) {
       top: calc(var(--spacing) * 32);
@@ -1271,6 +1298,11 @@
     @media (width >= 48rem) {
       font-size: var(--text-8xl);
       line-height: var(--tw-leading, var(--text-8xl--line-height));
+    }
+  }
+  .lg\:grid-cols-2 {
+    @media (width >= 64rem) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
   .lg\:grid-cols-3 {

@@ -1,18 +1,14 @@
 <% layout("layout/boilerplate") %>
 
 <%if(currentUser && collections.length) {%>
-<main class="flex-col px-5  ">
+<main class="flex-col px-5 h-[80dvh]  overflow-auto">
  
-  <header class="mb-5 text-shadow-xs text-shadow-white">
-    <h1 class=" sm:text-6xl text-4xl text-center text-shadow"></h1>
-  </header>
 
 
-
-  <ul class="grid sm:grid-cols-2 lg:grid-cols-3  grid-cols-1  rounded-2xl gap-2  relative" id="list-group">
+  <ul class=" grid sm:grid-cols-2 lg:grid-cols-3  grid-cols-1  rounded-2xl gap-2  relative" id="list-group">
     <% for(let collection of collections){ %>
     <li id="<%= collection._id %>Root" class="group bg-white flex rounded-2xl flex-col   drop-shadow-textMain-500 drop-shadow-lg   relative z-5 hover:rotate-x-12 active:bg-accent-500 transition-all
-    duration-300 ease-in-out text-4xl p-4 w-full md:max-w-sm  text-textMain-800 <%= collection.products[0] === undefined ? " hidden" : ""
+    duration-300 ease-in-out text-4xl h-fit p-4 w-full md:max-w-sm  text-textMain-800 <%= collection.products[0] === undefined ? " hidden" : ""
               %>">
       <a role="button" data-id="<%=collection._id%>" aria-expanded="false" aria-controls="collapseExample<%= collection._id %>" class=" cursor-pointer flex-2 collapse-toggle">
         
@@ -47,7 +43,7 @@
           </form>
         </div>
       </a>
-      <ul class="overflow-hidden md:absolute  md:top-32 md:left-0  z-10 text-lg w-full  rounded-2xl max-h-0 transition-all first:rounded-t-2xl last:rounded-b-2xl  duration-300 ease-in-out" id="collapseExample<%= collection._id %>">
+      <ul class="overflow-hidden  md:top-32 md:left-0  z-10 text-lg w-full  rounded-2xl max-h-0 transition-all first:rounded-t-2xl last:rounded-b-2xl  duration-300 ease-in-out" id="collapseExample<%= collection._id %>">
         <% for(let product of collection.products){ %>
         <% if (product.category===collection.name){ %>
   
