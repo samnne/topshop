@@ -70,7 +70,6 @@
     --color-primary-500: #841C26;
     --color-primary-600: #c37b66;
     --color-primary-700: #b9654d;
-    --color-secondary-100: #f5f2ed;
     --color-secondary-200: #ebe5db;
     --color-secondary-300: #e1d8c9;
     --color-secondary-400: #d7cbb7;
@@ -90,7 +89,6 @@
     --color-textMain-900: #1a1010;
     --color-background-100: #fefdfd;
     --color-background-500: #faf5f5;
-    --color-background-900: #f6eded;
   }
 }
 @layer base {
